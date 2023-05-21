@@ -12,7 +12,7 @@ export default function DarkModeButton() {
   return (
     <>
       <button
-        className="text-neutral-900 dark:text-neutral-50"
+        className="text-neutral-900 dark:text-neutral-50 hover:text-neutral-50 dark:hover:text-slate-700"
         onClick={toggleDarkMode}
         size={30}
       >

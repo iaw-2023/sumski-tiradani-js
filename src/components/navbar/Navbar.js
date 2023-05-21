@@ -4,6 +4,7 @@ import NavbarLink from "./Navbar-Link";
 import DarkModeButton from "../DarkModeButton";
 import HamburgerMenu from "./HamburgerMenu";
 import HamburgerButton from "./HamburgerButton";
+import CartButton from "../CartButton";
 
 const links = [
   { text: "Home", url: "/" },
@@ -36,10 +37,11 @@ function Navbar() {
   }
 
   return (
-    <div className="fixed top-0 w-full shadow-2xl" ref={navRef}>
-      <nav className="flex p-4 transition-colors bg-slate-300 dark:bg-slate-900 dark:text-white">
+    <div className="fixed top-0 w-full" ref={navRef}>
+      <nav className="flex p-4 transition-colors bg-neutral-200 dark:bg-slate-900 dark:text-white">
         <DesktopContent />
         <MobileContent />
+        <CartButton />
         <DarkModeButton />
       </nav>
       <HamburgerMenu openHook={[open, setOpen]} navRef={navRef} links={links} />

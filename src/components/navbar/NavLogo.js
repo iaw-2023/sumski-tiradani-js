@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function NavLogo({ link, onClick, center }) {
   return (
     <Link
-      className={center ? " m-auto" : "pr-2 m-1"}
+      className={center ? " m-auto my-1" : "pr-2 m-1"}
       to={link}
       onClick={onClick}
     >
