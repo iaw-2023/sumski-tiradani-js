@@ -1,7 +1,6 @@
 import React from "react";
-import CenteredContent from "../layouts/CenteredContent";
 
-function card({
+function Card({
   nombre,
   descripcion,
   precio,
@@ -29,4 +28,4 @@ function card({
   );
 }
 
-export default card;
+export default Card;

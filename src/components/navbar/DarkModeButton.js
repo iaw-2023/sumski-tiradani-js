@@ -1,4 +1,4 @@
-import useDarkTheme from "../hooks/useDarkTheme";
+import useDarkTheme from "../../hooks/useDarkTheme";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 

@@ -1,14 +1,15 @@
 import { React, useState, useRef } from "react";
 import NavLogo from "./NavLogo";
 import NavbarLink from "./Navbar-Link";
-import DarkModeButton from "../DarkModeButton";
+import DarkModeButton from "./DarkModeButton";
 import HamburgerMenu from "./HamburgerMenu";
 import HamburgerButton from "./HamburgerButton";
-import CartButton from "../CartButton";
+import CartButton from "./CartButton";
+import HistoryButton from "./HistoryButton";
 
 const links = [
   { text: "Home", url: "/" },
-  { text: "Prueba", url: "/prueba" },
+  { text: "Camisetas", url: "/camisetas" },
 ];
 
 function Navbar() {
@@ -41,6 +42,7 @@ function Navbar() {
       <nav className="flex p-4 transition-colors bg-neutral-200 dark:bg-slate-900 dark:text-white">
         <DesktopContent />
         <MobileContent />
+        <HistoryButton />
         <CartButton />
         <DarkModeButton />
       </nav>

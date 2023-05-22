@@ -1,23 +1,20 @@
-import { Routes, Route, Link } from "react-router-dom";
-import Home from "./pages/Home";
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
-import Cart from "./pages/Cart";
 import Footer from "./components/Footer";
-import FetchData from "./components/FetchData";
-import ResponsiveGridLayout from "./layouts/ResponsiveGridLayout";
-import CenteredContent from "./layouts/CenteredContent";
+import Home from "./pages/Home";
+import Cart from "./pages/Cart";
+import History from "./pages/History";
 import Camisetas from "./pages/Camisetas";
-import Card from "./components/Card";
 
 const App = () => {
   return (
     <div className="h-screen">
       <Navbar />
-      <Camisetas />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/prueba" element={<Link to="/">VOLVER</Link>} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/history" element={<History />} />
+        <Route path="/camisetas" element={<Camisetas />} />
       </Routes>
       <Footer />
     </div>

@@ -5,7 +5,7 @@ export default function CartButton() {
   return (
     <>
       <button
-        className="text-neutral-900 dark:text-neutral-50 px-3 hover:text-neutral-50 dark:hover:text-slate-700"
+        className="text-neutral-900 dark:text-neutral-50 pr-3 hover:text-neutral-50 dark:hover:text-slate-700"
         size={30}
       >
         <Link to="/cart">
