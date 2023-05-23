@@ -27,7 +27,11 @@ const Camisetas = () => {
           <Card
             key={item.nombre}
             nombre={item.nombre}
-            descripcion={item.descripcion}
+            descripcion={
+              item.descripcion.length > 16
+                ? item.descripcion.substring(0, 16) + "..."
+                : item.descripcion
+            }
             precio={item.precio}
             imagen_frente={"data:image/png;base64," + item.imagen_frente}
             imagen_atras={item.imagen_atras}
