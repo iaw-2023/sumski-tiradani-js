@@ -2,28 +2,61 @@ import React from "react";
 import CenteredContent from "../layouts/CenteredContent";
 import ResponsiveGridLayout from "../layouts/ResponsiveGridLayout";
 import Card from "../components/Card";
+import CategoriesSideBar from "../components/CategoriesSideBar";
 
 const Camisetas = () => {
-  const [entradas, setEntries] = React.useState([]);
+  const [camisetas, setCamisetas] = React.useState([]);
+  const [categorias, setCategorias] = React.useState([]);
 
   React.useEffect(() => {
-    obtenerData();
+    obtenerCamisetas();
+    obtenerCategorias();
   }, []);
 
-  const obtenerData = async () => {
+  const obtenerCamisetas = async () => {
     const data = await fetch(
       "https://tucasaca-laravel-git-correcciones-entrega2-sumski-tiradani.vercel.app/_api/camisetas"
     );
     const entries = await data.json();
     console.log(entries);
-    setEntries(entries);
+    setCamisetas(entries);
+  };
+
+  const obtenerCategorias = async () => {
+    const data = await fetch(
+      "https://tucasaca-laravel-git-correcciones-entrega2-sumski-tiradani.vercel.app/_api/categorias"
+    );
+    const entries = await data.json();
+    setCategorias(entries);
   };
 
   return (
     <CenteredContent>
       <ResponsiveGridLayout>
-        <div>Categorias</div>
-        {entradas.map((item) => (
+        <CategoriesSideBar>
+          <label className="flex flex-row label cursor-pointer">
+            <span className="label-text text-base">Todo</span>
+            <input
+              id="categoria-todo"
+              type="radio"
+              name="radio-1"
+              className="radio ml-auto"
+              autoComplete
+            />
+          </label>
+          {categorias.map((item) => (
+            <label className="flex flex-row label cursor-pointer">
+              <span className="label-text text-base">
+                {item.name.length > 20
+                  ? item.name.substring(0, 20) + "..."
+                  : item.name}
+              </span>
+              <input type="radio" name="radio-1" className="radio ml-auto" />
+            </label>
+          ))}
+        </CategoriesSideBar>
+
+        {camisetas.map((item) => (
           <Card
             key={item.nombre}
             nombre={item.nombre}

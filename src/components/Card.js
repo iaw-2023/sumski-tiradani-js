@@ -20,7 +20,7 @@ function Card({
         <p class="font-bold md:text-lg lg:text-xl">{nombre}</p>
       </div>
       <div class="mx-4">
-        <p class="text-gray-700 text-base ">{descripcion}</p>
+        <p class="text-gray-700 ">{descripcion}</p>
       </div>
       <div class="mt-auto py-2 px-2">
         <a
