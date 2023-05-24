@@ -5,7 +5,7 @@ function HamburgerButton({ openHook }) {
   const [open, setOpen] = openHook;
 
   return (
-    <button className="mr-20" onClick={() => setOpen(!open)}>
+    <button className="mr-10" onClick={() => setOpen(!open)}>
       {open ? <MenuOpenIcon /> : <MenuIcon />}
     </button>
   );
