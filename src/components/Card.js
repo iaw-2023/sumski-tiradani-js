@@ -14,11 +14,15 @@ function Card({
     <div className="flex flex-col sm:max-w-sm p-4 space-y-2 shadow-md rounded-lg overflow-hidden transition-colors bg-neutral-300 dark:bg-slate-700 text-black dark:text-white">
       <img
         className="w-full rounded-t-lg group-hover:hidden"
-        src={imagen_frente}
+        src={"data:image/png;base64," + imagen_frente}
         alt="Camiseta"
       />
       <p className="font-bold text-xl">{nombre}</p>
-      <p className="font-thin">{descripcion}</p>
+      <p className="font-thin">
+        {descripcion.length > 16
+          ? descripcion.substring(0, 16) + "..."
+          : descripcion}
+      </p>
 
       <div className="mt-auto">
         <p className="font-bold text-lg">{"$" + precio}</p>
