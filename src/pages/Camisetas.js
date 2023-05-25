@@ -7,6 +7,7 @@ import CamisetasGrid from "../components/camisetas/CamisetasGrid";
 import CamisetasPaginator from "../components/camisetas/CamisetasPaginator";
 
 const Camisetas = () => {
+  const API_URL = process.env.REACT_APP_API_URL;
   const DEFAULT_CATEGORIA = "%";
   const PAGE_SIZE = 8;
   // Fetch
@@ -22,31 +23,39 @@ const Camisetas = () => {
   const [camisetasByCategoria, setCamisetasByCategoria] = useState([]);
   const [page, setPage] = useState(1);
 
-  const obtenerCamisetas = async () => {
-    const data = await fetch(
-      "https://tucasaca-laravel-git-correcciones-entrega2-sumski-tiradani.vercel.app/_api/camisetas"
-    );
-    const entries = await data.json();
-    setCamisetas(entries);
-    setCamisetasByCategoria(entries);
-    setLoading((loading) => ({ ...loading, camisetas: false }));
-  };
-
-  const obtenerCategorias = async () => {
-    const data = await fetch(
-      "https://tucasaca-laravel-git-correcciones-entrega2-sumski-tiradani.vercel.app/_api/categorias"
-    );
-    const entries = await data.json();
-    setCategorias(entries);
-    setLoading((loading) => ({ ...loading, categorias: false }));
-  };
+  useEffect(() => {
+    setLoading((loading) => ({ ...loading, categorias: true }));
+    fetch(API_URL + "/categorias")
+      .then((response) => {
+        if (!response.ok) throw new Error("Error de Red");
+        return response.json();
+      })
+      .then((data) => {
+        setLoading((loading) => ({ ...loading, categorias: false }));
+        setCategorias(data);
+      })
+      .catch((error) => {
+        setLoading((loading) => ({ ...loading, categorias: false }));
+        // MANEJO DE ERROR
+      });
+  }, [API_URL]);
 
   useEffect(() => {
     setLoading((loading) => ({ ...loading, camisetas: true }));
-    setLoading((loading) => ({ ...loading, categorias: true }));
-    obtenerCategorias();
-    obtenerCamisetas();
-  }, []);
+    fetch(API_URL + "/camisetas")
+      .then((response) => {
+        if (!response.ok) throw new Error("Error de Red");
+        return response.json();
+      })
+      .then((data) => {
+        setLoading((loading) => ({ ...loading, camisetas: false }));
+        setCamisetas(data);
+      })
+      .catch((error) => {
+        setLoading((loading) => ({ ...loading, camisetas: false }));
+        // MANEJO DE ERROR
+      });
+  }, [API_URL]);
 
   useEffect(() => {
     if (categoriaSelected === DEFAULT_CATEGORIA) {
