@@ -19,18 +19,7 @@ function CamisetasGrid({ camisetas, cantidad, pageSize, page }) {
       {camisetas.length > 0
         ? camisetas
             .slice(from, to)
-            .map((item, itemkey) => (
-              <Card
-                key={itemkey}
-                nombre={item.nombre}
-                descripcion={item.descripcion}
-                precio={item.precio}
-                imagen_frente={item.imagen_frente}
-                imagen_atras={item.imagen_atras}
-                talles_disponibles={item.talles_disponibles}
-                categorias={item.categorias}
-              ></Card>
-            ))
+            .map((camiseta, key) => <Card key={key} camiseta={camiseta} />)
         : noCamisetasAvailableMessage}
     </>
   );

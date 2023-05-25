@@ -1,31 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Card({
-  nombre,
-  descripcion,
-  precio,
-  imagen_frente,
-  imagen_atras,
-  talles_disponibles,
-  categorias,
-}) {
+function Card({ camiseta }) {
   return (
     <div className="flex flex-col sm:max-w-sm p-4 space-y-2 shadow-md rounded-lg overflow-hidden transition-colors bg-neutral-300 dark:bg-slate-700 text-black dark:text-white">
       <img
         className="w-full rounded-t-lg group-hover:hidden"
-        src={"data:image/png;base64," + imagen_frente}
+        src={"data:image/png;base64," + camiseta.imagen_frente}
         alt="Camiseta"
       />
-      <p className="font-bold text-xl">{nombre}</p>
+      <p className="font-bold text-xl">{camiseta.nombre}</p>
       <p className="font-thin">
-        {descripcion.length > 16
-          ? descripcion.substring(0, 16) + "..."
-          : descripcion}
+        {camiseta.descripcion.length > 16
+          ? camiseta.descripcion.substring(0, 16) + "..."
+          : camiseta.descripcion}
       </p>
 
       <div className="mt-auto">
-        <p className="font-bold text-lg">{"$" + precio}</p>
+        <p className="font-bold text-lg">{"$" + camiseta.precio}</p>
       </div>
       <Link
         to="/prueba"
