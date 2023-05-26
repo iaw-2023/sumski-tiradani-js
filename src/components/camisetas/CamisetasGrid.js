@@ -1,4 +1,4 @@
-import Card from "../Card";
+import Card from "./Card";
 
 function CamisetasGrid({ camisetas, cantidad, pageSize, page }) {
   const from = (page - 1) * pageSize;

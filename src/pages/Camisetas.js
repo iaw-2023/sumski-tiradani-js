@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import CenteredContent from "../layouts/CenteredContent";
-import ResponsiveGridLayout from "../layouts/ResponsiveGridLayout";
+import ResponsiveGridLayout from "../components/camisetas/ResponsiveGridLayout";
 import Loading from "../components/Loading";
 import CategoriesSideBar from "../components/camisetas/CategoriesSideBar";
 import CamisetasGrid from "../components/camisetas/CamisetasGrid";

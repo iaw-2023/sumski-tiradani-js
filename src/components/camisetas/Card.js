@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import BoxAlt from "../../layouts/BoxAlt";
 
 function Card({ camiseta }) {
   return (
-    <div className="flex flex-col sm:max-w-sm p-4 space-y-2 shadow-md rounded-lg overflow-hidden transition-colors bg-neutral-300 dark:bg-slate-700 text-black dark:text-white hover:bg-slate-100">
+    <BoxAlt>
       <img
         className="w-full rounded-t-lg group-hover:hidden"
         src={"data:image/png;base64," + camiseta.imagen_frente}
@@ -25,7 +26,7 @@ function Card({ camiseta }) {
       >
         Comprar
       </Link>
-    </div>
+    </BoxAlt>
   );
 }
 

@@ -1,9 +1,5 @@
-import logo from "../assets/logo.svg";
-import "../Home.css";
-import { Link } from "react-router-dom";
-import CenteredContent from "../layouts/CenteredContent";
+import "../styles/carousel.css";
 import Carousel from "react-bootstrap/Carousel";
-import Box from "../layouts/Box";
 
 function Home() {
   return (
@@ -100,7 +96,7 @@ function Home() {
             ></path>
             <path d="M9 11H3v5a2 2 0 002 2h4v-7zM11 18h4a2 2 0 002-2v-5h-6v7z"></path>
           </svg>
-          <a href="#">
+          <a href="/">
             <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
               Need a help in Claim?
             </h5>
@@ -110,7 +106,7 @@ function Home() {
             weekly benefits:
           </p>
           <a
-            href="#"
+            href="/"
             class="inline-flex items-center text-blue-600 hover:underline"
           >
             See our guideline
@@ -141,7 +137,7 @@ function Home() {
             ></path>
             <path d="M9 11H3v5a2 2 0 002 2h4v-7zM11 18h4a2 2 0 002-2v-5h-6v7z"></path>
           </svg>
-          <a href="#">
+          <a href="/">
             <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
               Need a help in Claim?
             </h5>
@@ -151,7 +147,7 @@ function Home() {
             weekly benefits:
           </p>
           <a
-            href="#"
+            href="/"
             class="inline-flex items-center text-blue-600 hover:underline"
           >
             See our guideline
@@ -181,7 +177,7 @@ function Home() {
             ></path>
             <path d="M9 11H3v5a2 2 0 002 2h4v-7zM11 18h4a2 2 0 002-2v-5h-6v7z"></path>
           </svg>
-          <a href="#">
+          <a href="/">
             <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
               Need a help in Claim?
             </h5>
@@ -191,7 +187,7 @@ function Home() {
             weekly benefits:
           </p>
           <a
-            href="#"
+            href="/"
             class="inline-flex items-center text-blue-600 hover:underline"
           >
             See our guideline
