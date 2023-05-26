@@ -1,14 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import BoxAlt from "../../layouts/BoxAlt";
+import ImageHover from "./ImageHover";
 
 function Card({ camiseta }) {
   return (
     <BoxAlt>
-      <img
-        className="w-full rounded-t-lg group-hover:hidden"
-        src={"data:image/png;base64," + camiseta.imagen_frente}
-        alt="Camiseta"
+      <ImageHover
+        imagen_frente={camiseta.imagen_frente}
+        imagen_atras={camiseta.imagen_atras}
       />
       <p className="font-bold text-xl">{camiseta.nombre}</p>
       <p className="font-thin">
