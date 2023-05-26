@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import CenteredContent from "../layouts/CenteredContent";
 import ResponsiveGridLayout from "../components/camisetas/ResponsiveGridLayout";
 import Loading from "../components/Loading";
-import CategoriesSideBar from "../components/camisetas/CategoriesSideBar";
+import CategoriasSelector from "../components/camisetas/CategoriasSelector";
 import CamisetasGrid from "../components/camisetas/CamisetasGrid";
 import CamisetasPaginator from "../components/camisetas/CamisetasPaginator";
 
@@ -78,7 +78,7 @@ const Camisetas = () => {
 
       {!loading.categorias && !loading.camisetas && (
         <ResponsiveGridLayout>
-          <CategoriesSideBar
+          <CategoriasSelector
             categorias={categorias}
             setCategoriaSelected={(c) => setCategoriaSelected(c)}
           />

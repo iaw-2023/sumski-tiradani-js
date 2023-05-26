@@ -5,9 +5,6 @@ function ResponsiveGridLayout({ children }) {
     <>
       <div className="w-full flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0 ">
         <div className="space-y-4">
-          <Box>
-            <p className="text-bold text-xl">Categorias</p>
-          </Box>
           <Box>{children[0]}</Box>
         </div>
 
