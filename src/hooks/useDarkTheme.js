@@ -3,9 +3,9 @@ import { useState, useEffect } from "react";
 export default function useDarkTheme() {
   if (!("theme" in localStorage)) {
     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      localStorage.theme = "dark";
+      localStorage.setItem("theme", "dark");
     } else {
-      localStorage.theme = "light";
+      localStorage.setItem("theme", "light");
     }
   }
 

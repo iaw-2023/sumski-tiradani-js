@@ -11,12 +11,16 @@ const Camisetas = () => {
   const DEFAULT_CATEGORIA = "%";
   const PAGE_SIZE = 8;
   // Fetch
-  const [camisetas, setCamisetas] = useState([]);
-  const [categorias, setCategorias] = useState([]);
+  const [camisetas, setCamisetas] = useState(
+    JSON.parse(sessionStorage.getItem("camisetas")) || []
+  );
+  const [categorias, setCategorias] = useState(
+    JSON.parse(sessionStorage.getItem("categorias")) || []
+  );
   // Loading
   const [loading, setLoading] = useState({
-    categorias: true,
-    camisetas: true,
+    categorias: false,
+    camisetas: false,
   });
   // View
   const [categoriaSelected, setCategoriaSelected] = useState("%");
@@ -24,38 +28,44 @@ const Camisetas = () => {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    setLoading((loading) => ({ ...loading, categorias: true }));
-    fetch(API_URL + "/categorias")
-      .then((response) => {
-        if (!response.ok) throw new Error("Error de Red");
-        return response.json();
-      })
-      .then((data) => {
-        setLoading((loading) => ({ ...loading, categorias: false }));
-        setCategorias(data);
-      })
-      .catch((error) => {
-        setLoading((loading) => ({ ...loading, categorias: false }));
-        // MANEJO DE ERROR
-      });
-  }, [API_URL]);
+    if (categorias === []) {
+      setLoading((loading) => ({ ...loading, categorias: true }));
+      fetch(API_URL + "/categorias")
+        .then((response) => {
+          if (!response.ok) throw new Error("Error de Red");
+          return response.json();
+        })
+        .then((data) => {
+          setLoading((loading) => ({ ...loading, categorias: false }));
+          setCategorias(data);
+          sessionStorage.setItem("categorias", JSON.stringify(data));
+        })
+        .catch((error) => {
+          setLoading((loading) => ({ ...loading, categorias: false }));
+          // MANEJO DE ERROR
+        });
+    }
+  }, [categorias, API_URL]);
 
   useEffect(() => {
-    setLoading((loading) => ({ ...loading, camisetas: true }));
-    fetch(API_URL + "/camisetas")
-      .then((response) => {
-        if (!response.ok) throw new Error("Error de Red");
-        return response.json();
-      })
-      .then((data) => {
-        setLoading((loading) => ({ ...loading, camisetas: false }));
-        setCamisetas(data);
-      })
-      .catch((error) => {
-        setLoading((loading) => ({ ...loading, camisetas: false }));
-        // MANEJO DE ERROR
-      });
-  }, [API_URL]);
+    if (camisetas === []) {
+      setLoading((loading) => ({ ...loading, camisetas: true }));
+      fetch(API_URL + "/camisetas")
+        .then((response) => {
+          if (!response.ok) throw new Error("Error de Red");
+          return response.json();
+        })
+        .then((data) => {
+          setLoading((loading) => ({ ...loading, camisetas: false }));
+          setCamisetas(data);
+          sessionStorage.setItem("camisetas", JSON.stringify(data));
+        })
+        .catch((error) => {
+          setLoading((loading) => ({ ...loading, camisetas: false }));
+          // MANEJO DE ERROR
+        });
+    }
+  }, [camisetas, API_URL]);
 
   useEffect(() => {
     if (categoriaSelected === DEFAULT_CATEGORIA) {
