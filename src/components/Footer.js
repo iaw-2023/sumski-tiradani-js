@@ -5,7 +5,7 @@ function Footer() {
         ©️ TuCasaca.com | Ingeniería de Aplicaciones de Web 2023
       </div>
       <div className="m-auto inline sm:hidden">©️ TuCasaca.com | IAW 2023</div>
-      <div className="m-auto">
+      <div className="m-auto text-center">
         Creado por <b>Emanuel Tiradani</b> y <b>Juan Pablo Sumski</b>
       </div>
     </footer>

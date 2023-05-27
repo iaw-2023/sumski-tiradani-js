@@ -7,25 +7,24 @@ function ItemCamiseta({ camiseta, cantidadPedida }) {
           className="rounded-md h-16"
           alt="Camiseta"
         />
-        <div className="flex flex-col space-y-2 w-full">
-          <p className="text-md hidden sm:inline"> {camiseta.nombre}</p>
-          <p className="text-md text-gray-500 hidden sm:inline">
-            {camiseta.descripcion}
-          </p>
-          <p className="text-md inline sm:hidden">
+        <div className="flex-col space-y-2 w-full hidden sm:flex">
+          <p className="text-md"> {camiseta.nombre}</p>
+          <p className="text-md text-gray-500">{camiseta.descripcion}</p>
+        </div>
+        <div className="flex-col space-y-2 w-full flex sm:hidden">
+          <p className="text-md">
             {camiseta.nombre.length > 16
               ? camiseta.nombre.substring(0, 16) + "..."
               : camiseta.nombre}
           </p>
-          <p className="text-md text-gray-500 inline sm:hidden">
+          <p className="text-md text-gray-500">
             {camiseta.descripcion.length > 16
               ? camiseta.descripcion.substring(0, 16) + "..."
               : camiseta.descripcion}
           </p>
         </div>
         <p className="text-md"> {"X" + cantidadPedida}</p>
-        <p className="text-md">
-          {" "}
+        <p className="text-md font-semibold">
           {"$" + (camiseta.precio * cantidadPedida).toFixed(2)}
         </p>
       </div>
