@@ -1,4 +1,4 @@
-import Card from "./Card";
+import CamisetaCard from "./CamisetaCard";
 
 function CamisetasGrid({ camisetas, cantidad, pageSize, page }) {
   const from = (page - 1) * pageSize;
@@ -19,7 +19,9 @@ function CamisetasGrid({ camisetas, cantidad, pageSize, page }) {
       {camisetas.length > 0
         ? camisetas
             .slice(from, to)
-            .map((camiseta, key) => <Card key={key} camiseta={camiseta} />)
+            .map((camiseta, key) => (
+              <CamisetaCard key={key} camiseta={camiseta} />
+            ))
         : noCamisetasAvailableMessage}
     </>
   );

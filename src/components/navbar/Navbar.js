@@ -41,7 +41,7 @@ function Navbar() {
       <nav className="flex p-4 transition-colors bg-neutral-200 dark:bg-slate-900 dark:text-white">
         <DesktopContent />
         <MobileContent />
-        <CartButton />
+        <CartButton onClick={() => setOpen(false)} />
         <DarkModeButton />
       </nav>
       <HamburgerMenu openHook={[open, setOpen]} navRef={navRef} links={links} />

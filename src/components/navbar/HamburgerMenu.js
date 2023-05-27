@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import Divider from "@mui/material/Divider";
 import NavbarLink from "./Navbar-Link";
 
 function HamburgerMenu({ openHook, navRef, links }) {
@@ -36,7 +35,7 @@ function HamburgerMenu({ openHook, navRef, links }) {
   if (open)
     return (
       <>
-        <Divider variant="fullWidth" />
+        <hr className="h-0.5 bg-black dark:bg-neutral-50" />
         <div className="flex flex-row sm:hidden w-full p-2 transition-colors bg-neutral-200 dark:bg-slate-900 dark:text-white">
           <ul className="m-auto flex-col">
             {links.map(function (link, index) {

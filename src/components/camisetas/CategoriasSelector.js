@@ -2,7 +2,11 @@ import { useState, useEffect } from "react";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
-const CategoriasSelector = ({ categorias, setCategoriaSelected }) => {
+const CategoriasSelector = ({
+  categorias,
+  categoriaSelected,
+  setCategoriaSelected,
+}) => {
   const SM_WIDTH = 640;
   const [open, setOpen] = useState(false);
   const [width, setWidth] = useState(window.innerWidth);
@@ -28,7 +32,7 @@ const CategoriasSelector = ({ categorias, setCategoriaSelected }) => {
       <div className="flex">
         <p className="text-bold text-xl">Categorias</p>
         <button
-          className="inline ml-auto sm:hidden"
+          className="inline ml-auto sm:hidden text-neutral-900 dark:text-neutral-50 pr-3 hover:text-neutral-500 dark:hover:text-slate-700"
           onClick={() => setOpen(!open)}
         >
           {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
@@ -43,7 +47,7 @@ const CategoriasSelector = ({ categorias, setCategoriaSelected }) => {
               type="radio"
               name="radio-1"
               className="radio ml-auto"
-              defaultChecked={true}
+              defaultChecked={categoriaSelected === "%" ? true : false}
               value="%"
               onChange={onCategoriaChange}
             />
@@ -59,6 +63,7 @@ const CategoriasSelector = ({ categorias, setCategoriaSelected }) => {
                 type="radio"
                 name="radio-1"
                 className="radio ml-auto"
+                defaultChecked={categoriaSelected === item.name ? true : false}
                 value={item.name}
                 onChange={onCategoriaChange}
               />

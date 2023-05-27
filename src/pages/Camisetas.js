@@ -80,6 +80,7 @@ const Camisetas = () => {
         <ResponsiveGridLayout>
           <CategoriasSelector
             categorias={categorias}
+            categoriaSelected={categoriaSelected}
             setCategoriaSelected={(c) => setCategoriaSelected(c)}
           />
           <CamisetasGrid

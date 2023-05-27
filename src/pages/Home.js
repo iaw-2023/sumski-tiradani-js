@@ -45,34 +45,34 @@ function Home() {
       </Carousel>
 
       <div className="grid grid-cols-1  lg:grid-cols-3  gap-3 place-items-center  m-auto justify-center col-span-full row-span-2 row-end-4 self-center z-10 ">
-        <div class="max-w-sm  h-full rounded overflow-hidden shadow-lg bg-neutral-50">
-          <div class="px-6 py-4">
-            <div class="font-bold text-xl mb-2 text-center">
+        <div className="max-w-sm  h-full rounded overflow-hidden shadow-lg bg-neutral-50">
+          <div className="px-6 py-4">
+            <div className="font-bold text-xl mb-2 text-center">
               TODAS LAS TARJETAS
             </div>
-            <p class="text-gray-700 text-base text-center">
+            <p className="text-gray-700 text-base text-center">
               Abona con todos los medios de pago. Mercado Pago con dinero
               disponible o tarjeta. ¡Y siempre es seguro!
             </p>
           </div>
         </div>
-        <div class="flex flex-row max-w-sm rounded items-stretch h-full overflow-hidden shadow-lg bg-neutral-50 content-evenly">
-          <div class="px-6 py-4">
-            <div class="font-bold text-xl mb-2 text-center">
+        <div className="flex flex-row max-w-sm rounded items-stretch h-full overflow-hidden shadow-lg bg-neutral-50 content-evenly">
+          <div className="px-6 py-4">
+            <div className="font-bold text-xl mb-2 text-center">
               ENVÍO RÁPIDO Y SEGURO
             </div>
-            <p class="text-gray-700 text-base text-center">
+            <p className="text-gray-700 text-base text-center">
               Elegí recibir tu compra en tu domicilio y hacé el seguimiento
               hasta que llegue a tus manos.
             </p>
           </div>
         </div>
-        <div class="max-w-sm rounded h-full overflow-hidden shadow-lg bg-neutral-50">
-          <div class="px-6 py-4">
-            <div class="font-bold text-xl mb-2 text-center">
+        <div className="max-w-sm rounded h-full overflow-hidden shadow-lg bg-neutral-50">
+          <div className="px-6 py-4">
+            <div className="font-bold text-xl mb-2 text-center">
               COMPRA PROTEGIDA
             </div>
-            <p class="text-gray-700 text-base text-center">
+            <p className="text-gray-700 text-base text-center">
               Te acompañamos hasta que recibas lo que compraste. Y si no es lo
               que esperabas, te devolvemos el dinero.
             </p>
@@ -81,9 +81,9 @@ function Home() {
       </div>
 
       <div className="grid grid-rows-2 grid-cols-2 gap-1 place-items-center ">
-        <div class="max-w-sm p-6 bg-white border border-gray-200  shadow dark:bg-gray-800 dark:border-gray-700">
+        <div className="max-w-sm p-6 bg-white border border-gray-200  shadow dark:bg-gray-800 dark:border-gray-700">
           <svg
-            class="w-10 h-10 mb-2 text-gray-500 dark:text-gray-400"
+            className="w-10 h-10 mb-2 text-gray-500 dark:text-gray-400"
             aria-hidden="true"
             fill="currentColor"
             viewBox="0 0 20 20"
@@ -97,7 +97,7 @@ function Home() {
             <path d="M9 11H3v5a2 2 0 002 2h4v-7zM11 18h4a2 2 0 002-2v-5h-6v7z"></path>
           </svg>
           <a href="/">
-            <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
+            <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
               Need a help in Claim?
             </h5>
           </a>
@@ -107,11 +107,11 @@ function Home() {
           </p>
           <a
             href="/"
-            class="inline-flex items-center text-blue-600 hover:underline"
+            className="inline-flex items-center text-blue-600 hover:underline"
           >
             See our guideline
             <svg
-              class="w-5 h-5 ml-2"
+              className="w-5 h-5 ml-2"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
@@ -122,9 +122,9 @@ function Home() {
           </a>
         </div>
 
-        <div class="max-w-sm p-6 bg-white border border-gray-200  shadow dark:bg-gray-800 dark:border-gray-700">
+        <div className="max-w-sm p-6 bg-white border border-gray-200  shadow dark:bg-gray-800 dark:border-gray-700">
           <svg
-            class="w-10 h-10 mb-2 text-gray-500 dark:text-gray-400"
+            className="w-10 h-10 mb-2 text-gray-500 dark:text-gray-400"
             aria-hidden="true"
             fill="currentColor"
             viewBox="0 0 20 20"
@@ -138,21 +138,21 @@ function Home() {
             <path d="M9 11H3v5a2 2 0 002 2h4v-7zM11 18h4a2 2 0 002-2v-5h-6v7z"></path>
           </svg>
           <a href="/">
-            <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
+            <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
               Need a help in Claim?
             </h5>
           </a>
-          <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">
+          <p className="mb-3 font-normal text-gray-500 dark:text-gray-400">
             Go to this step by step guideline process on how to certify for your
             weekly benefits:
           </p>
           <a
             href="/"
-            class="inline-flex items-center text-blue-600 hover:underline"
+            className="inline-flex items-center text-blue-600 hover:underline"
           >
             See our guideline
             <svg
-              class="w-5 h-5 ml-2"
+              className="w-5 h-5 ml-2"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
@@ -162,9 +162,9 @@ function Home() {
             </svg>
           </a>
         </div>
-        <div class="max-w-sm p-6 bg-white border border-gray-200  shadow dark:bg-gray-800 dark:border-gray-700">
+        <div className="max-w-sm p-6 bg-white border border-gray-200  shadow dark:bg-gray-800 dark:border-gray-700">
           <svg
-            class="w-10 h-10 mb-2 text-gray-500 dark:text-gray-400"
+            className="w-10 h-10 mb-2 text-gray-500 dark:text-gray-400"
             aria-hidden="true"
             fill="currentColor"
             viewBox="0 0 20 20"
@@ -178,21 +178,21 @@ function Home() {
             <path d="M9 11H3v5a2 2 0 002 2h4v-7zM11 18h4a2 2 0 002-2v-5h-6v7z"></path>
           </svg>
           <a href="/">
-            <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
+            <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
               Need a help in Claim?
             </h5>
           </a>
-          <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">
+          <p className="mb-3 font-normal text-gray-500 dark:text-gray-400">
             Go to this step by step guideline process on how to certify for your
             weekly benefits:
           </p>
           <a
             href="/"
-            class="inline-flex items-center text-blue-600 hover:underline"
+            className="inline-flex items-center text-blue-600 hover:underline"
           >
             See our guideline
             <svg
-              class="w-5 h-5 ml-2"
+              className="w-5 h-5 ml-2"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"

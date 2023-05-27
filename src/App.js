@@ -4,10 +4,11 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import Camisetas from "./pages/Camisetas";
+import { CartContextProvider } from "./contexts/CartContext";
 
 const App = () => {
   return (
-    <div className="h-screen">
+    <CartContextProvider>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -15,7 +16,7 @@ const App = () => {
         <Route path="/camisetas" element={<Camisetas />} />
       </Routes>
       <Footer />
-    </div>
+    </CartContextProvider>
   );
 };
 
