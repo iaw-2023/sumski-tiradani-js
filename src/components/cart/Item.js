@@ -8,7 +8,7 @@ const Item = ({ camiseta, pedidos }) => {
       <ItemCamiseta camiseta={camiseta} cantidadPedida={pedidos.length} />
       <div className="space-y-2">
         {pedidos.map((pedido, idx) => (
-          <ItemPedido camiseta={camiseta} pedido={pedido} />
+          <ItemPedido camiseta={camiseta} pedido={pedido} key={idx} />
         ))}
       </div>
     </Box>

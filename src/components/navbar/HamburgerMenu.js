@@ -40,9 +40,8 @@ function HamburgerMenu({ openHook, navRef, links }) {
           <ul className="m-auto flex-col">
             {links.map(function (link, index) {
               return (
-                <li className="flex content-center">
+                <li className="flex content-center" key={index}>
                   <NavbarLink
-                    key={index}
                     text={link.text}
                     link={link.url}
                     onClick={() => setOpen(!open)}

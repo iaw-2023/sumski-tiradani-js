@@ -31,7 +31,7 @@ function Cart() {
         <p className="text-xl">Tenés 0 productos en tu carrito :c</p>
       ) : (
         cart.map((item, idx) => (
-          <Item camiseta={item.camiseta} pedidos={item.pedidos} />
+          <Item camiseta={item.camiseta} pedidos={item.pedidos} key={idx} />
         ))
       )}
       {cart.length > 0 && <Box>{precio_total}</Box>}
