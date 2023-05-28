@@ -18,7 +18,18 @@ const Comprar = () => {
     cliente: "",
     forma_de_pago: "",
     direccion_de_entrega: "",
-    pedidos: [],
+    pedidos: cart
+      .map((item) =>
+        item.pedidos.map((pedido) => {
+          return {
+            nombre_camiseta: item.camiseta.nombre,
+            nombre_a_estampar: pedido.nombre_a_estampar,
+            numero_a_estampar: pedido.numero_a_estampar,
+            talle_elegido: pedido.talle,
+          };
+        })
+      )
+      .flatMap((arr) => arr),
   });
 
   const [paso, setPaso] = useState(1);
@@ -50,7 +61,7 @@ const Comprar = () => {
                   nextStep={() => setPaso(paso + 1)}
                 />
               )}
-              {paso === 4 && <FinCompra />}
+              {paso === 4 && <FinCompra compraHook={[compra, setCompra]} />}
             </BoxAlt>
             <InfoCompra finalizada={paso === 4} />
           </CompraLayout>

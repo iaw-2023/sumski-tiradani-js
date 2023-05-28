@@ -13,7 +13,7 @@ function CamisetaCard({ camiseta }) {
     const pedido = {
       nombre_a_estampar: "Prueba",
       numero_a_estampar: z,
-      talle: "XS",
+      talle: "M",
     };
 
     setCart((cart) => {

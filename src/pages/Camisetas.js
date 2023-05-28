@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import CenteredContent from "../layouts/CenteredContent";
 import ResponsiveGridLayout from "../components/camisetas/ResponsiveGridLayout";
 import Loading from "../components/Loading";
+import Error from "../components/Error";
 import CategoriasSelector from "../components/camisetas/CategoriasSelector";
 import CamisetasGrid from "../components/camisetas/CamisetasGrid";
 import CamisetasPaginator from "../components/camisetas/CamisetasPaginator";
@@ -12,24 +13,31 @@ const Camisetas = () => {
   const PAGE_SIZE = 8;
   // Fetch
   const [camisetas, setCamisetas] = useState(
-    JSON.parse(sessionStorage.getItem("camisetas")) || []
+    sessionStorage.getItem("camisetas") !== null
+      ? JSON.parse(sessionStorage.getItem("camisetas"))
+      : []
   );
   const [categorias, setCategorias] = useState(
-    JSON.parse(sessionStorage.getItem("categorias")) || []
+    sessionStorage.getItem("categorias") !== null
+      ? JSON.parse(sessionStorage.getItem("categorias"))
+      : []
   );
   // Loading
   const [loading, setLoading] = useState({
     categorias: false,
     camisetas: false,
   });
+  // Error
+  const [error, setError] = useState("");
   // View
   const [categoriaSelected, setCategoriaSelected] = useState("%");
   const [camisetasByCategoria, setCamisetasByCategoria] = useState([]);
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    if (categorias === []) {
+    if (categorias.length === 0) {
       setLoading((loading) => ({ ...loading, categorias: true }));
+      setError("");
       fetch(API_URL + "/categorias")
         .then((response) => {
           if (!response.ok) throw new Error("Error de Red");
@@ -42,14 +50,15 @@ const Camisetas = () => {
         })
         .catch((error) => {
           setLoading((loading) => ({ ...loading, categorias: false }));
-          // MANEJO DE ERROR
+          setError("No se pudieron cargar las camisetas");
         });
     }
   }, [categorias, API_URL]);
 
   useEffect(() => {
-    if (camisetas === []) {
+    if (camisetas.length === 0) {
       setLoading((loading) => ({ ...loading, camisetas: true }));
+      setError("");
       fetch(API_URL + "/camisetas")
         .then((response) => {
           if (!response.ok) throw new Error("Error de Red");
@@ -62,7 +71,7 @@ const Camisetas = () => {
         })
         .catch((error) => {
           setLoading((loading) => ({ ...loading, camisetas: false }));
-          // MANEJO DE ERROR
+          setError("No se pudieron cargar las camisetas");
         });
     }
   }, [camisetas, API_URL]);
@@ -86,7 +95,9 @@ const Camisetas = () => {
     <CenteredContent>
       {(loading.camisetas || loading.categorias) && <Loading />}
 
-      {!loading.categorias && !loading.camisetas && (
+      {error !== "" && <Error message={error} />}
+
+      {!loading.categorias && !loading.camisetas && error === "" && (
         <ResponsiveGridLayout>
           <CategoriasSelector
             categorias={categorias}

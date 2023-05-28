@@ -1,17 +1,41 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PasoLayout from "./PasoLayout";
 import Error from "../Error";
 import Loading from "../Loading";
 
-const FinCompra = () => {
+const FinCompra = ({ compraHook }) => {
+  const API_URL = process.env.REACT_APP_API_URL;
+
+  const [compra] = compraHook;
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   const TITULO = loading
-    ? "Realizando pago... 🤑"
+    ? "Confirmando compra... ⏳"
     : error === ""
     ? "Compra realizada 😊"
     : "Algo salió mal ☹️";
+
+  useEffect(() => {
+    setLoading(true);
+    fetch(API_URL + "/comprar", {
+      method: "POST",
+      headers: {
+        "X-CSRF-TOKEN": "",
+        "Content-Type": "application/json",
+        accept: "application/json",
+      },
+      body: JSON.stringify(compra),
+    })
+      .then((response) => {
+        if (!response.ok) throw new Error("Error de Red");
+        else setLoading(false);
+      })
+      .catch((error) => {
+        setLoading(false);
+        setError("No se pudo completar la compra, intentalo mas tarde");
+      });
+  }, [compra, API_URL]);
 
   const CONTENT = loading ? (
     <Loading />
@@ -24,7 +48,7 @@ const FinCompra = () => {
       </p>
     </>
   ) : (
-    <Error message={"No se pudo completar la compra, intentalo mas tarde"} />
+    <Error message={error} />
   );
 
   return <PasoLayout title={TITULO} content={CONTENT} buttons={null} />;
