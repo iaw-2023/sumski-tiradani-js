@@ -1,13 +1,52 @@
 import PasoLayout from "./PasoLayout";
+import Box from "../../layouts/Box";
+import { useEffect, useState } from "react";
 
 function DatosPersonales({ compraHook, nextStep }) {
   const PASO = 1;
   const TITULO = "Datos Personales 👤";
-  const handleNextStep = () => {
-    nextStep();
+
+  const [compra, setCompra] = compraHook;
+  const [email, setEmail] = useState(compra.cliente);
+  const [error, setError] = useState("");
+
+  const handleInput = (event) => {
+    setEmail(event.target.value);
+    setError("");
   };
 
-  const CONTENT = <></>;
+  const handleNextStep = () => {
+    if (email === "") {
+      setError("Se requiere un email para hacer una compra");
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
+      setError("El mail no corresponde a un formato válido");
+    } else {
+      setCompra({ ...compra, cliente: email });
+      nextStep();
+    }
+  };
+
+  const CONTENT = (
+    <>
+      <Box>
+        <p className="text-lg font-thin">Email:</p>
+        <div className="flex w-full">
+          <input
+            className="w-full text-black p-3 rounded-lg"
+            type="email"
+            onChange={handleInput}
+            placeholder="Ingresa tu correo electrónico"
+            defaultValue={email}
+          ></input>
+        </div>
+      </Box>
+      {error ? (
+        <Box>
+          <p className="text-red-600 italic">{error}</p>
+        </Box>
+      ) : null}
+    </>
+  );
 
   const BUTTONS = (
     <>
