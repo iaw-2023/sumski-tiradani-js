@@ -1,3 +1,55 @@
+# Proyecto Framework Javascript - React Sumski-Tiradani
+
+#### ⚽TuCasaca.com⚽
+
+En este proyecto logramos implementar una aplicación web de compra de camisetas deportivas. Esta aplicación utiliza la API desarrollada para el proyecto anterior para su funcionamiento.
+
+La aplicación se desarrolló con React como una aplicación web single-page. Como se pide simular una web profesional, se buscó lograr una experiencia responsive, pudiendose ver de manera correcta en dispositivos móviles como en PCs de escritorio. Además la aplicación cuenta con modo oscuro funcional.
+
+### Links
+
+- [Deploy en Vercel de la Tienda](https://sumski-tiradani-js-iamjuanpy.vercel.app/)
+- [Deploy en Vercel del ABM y API](https://tucasaca-laravel-iamjuanpy.vercel.app/)
+
+### Aclaraciones pertinentes
+
+- Para mejorar el rendimiento, una vez hecha la carga de todos los productos, estos quedan almacenados en _Session Storage_ del navegador, es decir hasta que se cierre la ventana, para asi solo esperar la descarga de datos del pedido a la API una sola vez.
+
+- El carrito de compras es almacenado en _Local Storage_ del navegador, para que el usuario conserve su carrito de compra para otro momento.
+
+### Herramientas y Librerías utilizadas
+
+- **React:** framework JavaScript partiendo de _create-react-app_.
+  [_Sitio Oficial_](https://create-react-app.dev/)
+
+<br>
+
+- **React Router:** librería de routing _client-side_.
+  [_Sitio Oficial_](https://reactrouter.com/)
+
+<br>
+
+- **Tailwind CSS:** framework CSS con clases predifinidas para estilar componentes de manera sencilla.
+  [_Sitio Oficial_](https://tailwindcss.com/)
+
+<br>
+
+- **React-Bootstrap:** librería que incluye componentes de Bootstrap en React.
+  [_Sitio Oficial_](https://getbootstrap.com/)
+
+  <br>
+
+- **MaterialUI:** librería de componentes de React que siguen el estilo Material Design. Usada para íconos y botones.
+  [_Sitio Oficial_](https://mui.com/material-ui/material-icons/)
+
+<br>
+
+- **Vercel:** sitio web para hacer el deploy de nuestra aplicación de manera gratuita y también la API que esta última utiliza.
+  [_Sitio Oficial_](https://vercel.com)
+  <br>
+
+---
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
