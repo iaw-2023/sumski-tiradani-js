@@ -31,7 +31,10 @@ function ItemPedido({ camiseta, pedido }) {
           {"Nombre a estampar: " + pedido.nombre_a_estampar}
         </p>
         <p className="text-sm">
-          {"Número a estampar: " + pedido.numero_a_estampar}
+          {"Número a estampar: " +
+            (pedido.numero_a_estampar !== "0"
+              ? pedido.numero_a_estampar
+              : "NO ESTAMPAR")}
         </p>
         <p className="text-sm">{"Talle elegido: " + pedido.talle}</p>
       </div>
