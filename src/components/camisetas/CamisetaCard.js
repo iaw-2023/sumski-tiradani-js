@@ -45,6 +45,7 @@ function CamisetaCard({ camiseta }) {
         state={{
           estado: {
             nombre: camiseta.nombre,
+            precio: camiseta.precio,
             imagen_frente: camiseta.imagen_frente,
             imagen_atras: camiseta.imagen_atras,
             descripcion: camiseta.descripcion,

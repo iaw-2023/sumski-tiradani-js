@@ -50,11 +50,12 @@ function CamisetaIndividual() {
           imagen_atras={estado.imagen_atras}
         />
         <div>
-          <h1 class="pb-6"> {nombre} </h1>
+          <h1 class="font-bold text-2xl pb-6"> {nombre} </h1>
+          <h1 class="font-bold text-4xl pb-6"> {"$" + estado.precio} </h1>
           <div class="pb-4">
             <label
-              class="block text-gray-700 text-sm font-bold mb-2"
-              for="username"
+              class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2"
+              for="nombre"
             >
               Nombre a estampar
             </label>
@@ -68,25 +69,25 @@ function CamisetaIndividual() {
           </div>
           <div class="pb-4">
             <label
-              class="block text-gray-700 text-sm font-bold mb-2"
+              class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2"
               for="username"
             >
-              Numero a estampar
+              Número a estampar
             </label>
             <input
               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               ref={input_numero_a_estampar}
               id="numero_a_estampar"
               type="number"
-              placeholder="Numero a estampar"
+              placeholder="Número a estampar"
             ></input>
           </div>
-          <Form>
+          <Form className="">
             {talles.map((talle) => (
               <div key={"inline-${talle}"} className="mb-3 inline-block pl-2 ">
                 <Form.Check
                   inline
-                  label={talle}
+                  label={" " + talle}
                   name="talle"
                   type="radio"
                   id={`inline-${talle}`}
@@ -94,7 +95,7 @@ function CamisetaIndividual() {
               </div>
             ))}
           </Form>
-          <div className="place-self-end">
+          <div className="flex flex-row place-content-end pt-4">
             <a
               onClick={addToCart}
               class="relative inline-flex items-center justify-center inline-block p-4 px-5 py-3 overflow-hidden font-medium text-indigo-600 rounded-lg shadow-2xl group"
@@ -104,7 +105,9 @@ function CamisetaIndividual() {
                 <span class="absolute bottom-0 left-0 w-24 h-24 -ml-10 bg-purple-500 rounded-full blur-md"></span>
                 <span class="absolute bottom-0 right-0 w-24 h-24 -mr-10 bg-pink-500 rounded-full blur-md"></span>
               </span>
-              <span class="relative text-white">Añadir al carrito</span>
+              <span class="relative text-white dark:text-gray-700">
+                Añadir al carrito
+              </span>
             </a>
           </div>
         </div>
