@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import BoxAlt from "../../layouts/BoxAlt";
 import ImageHover from "./ImageHover";
 import { CartContext } from "../../contexts/CartContext";
+import { Link } from "react-router-dom";
+import Camisetas from "../../pages/Camisetas";
 
 function CamisetaCard({ camiseta }) {
   const [, setCart] = useContext(CartContext);
@@ -38,7 +40,20 @@ function CamisetaCard({ camiseta }) {
         imagen_frente={camiseta.imagen_frente}
         imagen_atras={camiseta.imagen_atras}
       />
-      <p className="font-bold text-xl">{camiseta.nombre}</p>
+      <Link
+        to={"/personalizar-camiseta/" + camiseta.nombre}
+        state={{
+          estado: {
+            nombre: camiseta.nombre,
+            imagen_frente: camiseta.imagen_frente,
+            imagen_atras: camiseta.imagen_atras,
+            descripcion: camiseta.descripcion,
+            talles_disponibles: camiseta.talles_disponibles,
+          },
+        }}
+      >
+        <p className="font-bold text-xl">{camiseta.nombre}</p>
+      </Link>
       <p className="font-thin">
         {camiseta.descripcion.length > 16
           ? camiseta.descripcion.substring(0, 16) + "..."

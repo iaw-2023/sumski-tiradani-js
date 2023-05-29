@@ -6,6 +6,7 @@ import Cart from "./pages/Cart";
 import Camisetas from "./pages/Camisetas";
 import { CartContextProvider } from "./contexts/CartContext";
 import Comprar from "./pages/Comprar";
+import CamisetaIndividual from "./pages/CamisetaIndividual";
 
 const App = () => {
   return (
@@ -16,6 +17,10 @@ const App = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/camisetas" element={<Camisetas />} />
         <Route path="/comprar" element={<Comprar />} />
+        <Route
+          path="/personalizar-camiseta/:nombre"
+          element={<CamisetaIndividual />}
+        />
       </Routes>
       <Footer />
     </CartContextProvider>
