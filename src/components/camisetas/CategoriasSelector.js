@@ -10,6 +10,7 @@ const CategoriasSelector = ({
   const SM_WIDTH = 640;
   const [open, setOpen] = useState(false);
   const [width, setWidth] = useState(window.innerWidth);
+  const [talle, setTalleSelected] = useState();
 
   useEffect(() => {
     const handleWindowSizeChange = () => {

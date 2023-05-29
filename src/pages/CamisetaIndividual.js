@@ -1,11 +1,11 @@
-import { useContext, useRef } from "react";
-
+import { useContext, useRef, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import ImageHover from "../components/camisetas/ImageHover";
 import Form from "react-bootstrap/Form";
 import { CartContext } from "../contexts/CartContext";
 
 import CenteredContent from "../layouts/CenteredContent";
+import { Input } from "@mui/base";
 
 function CamisetaIndividual() {
   const [, setCart] = useContext(CartContext);
@@ -17,29 +17,34 @@ function CamisetaIndividual() {
   const location = useLocation();
   const { estado } = location.state;
   const talles = estado.talles_disponibles.split(", ");
+  const [talle, setTalleSelected] = useState("");
+
+  const onTalleChange = (event) => {
+    setTalleSelected(event.target.value);
+    //console.log(event.target.value);
+  };
 
   const addToCart = () => {
-    /* const z = Math.floor(Math.random() * (66 - 21 + 1)) + 21;
     const pedido = {
       nombre_a_estampar: input_nombre_a_estampar.current.value,
       numero_a_estampar: input_numero_a_estampar.current.value,
-      talle: "M",
+      talle: talle,
     };
 
     setCart((cart) => {
       const itemExists = cart.find(
-        (item) => item.camiseta.nombre === camiseta.nombre
+        (item) => item.camiseta.nombre === estado.nombre
       );
       if (itemExists) {
         return cart.map((item) => {
-          if (item.camiseta.nombre === camiseta.nombre)
+          if (item.camiseta.nombre === estado.nombre)
             return { ...item, pedidos: [...item.pedidos, pedido] };
           else return item;
         });
       } else {
-        return [...cart, { camiseta: camiseta, pedidos: [pedido] }];
+        return [...cart, { camiseta: estado, pedidos: [pedido] }];
       }
-    }); */
+    });
   };
 
   return (
@@ -91,6 +96,8 @@ function CamisetaIndividual() {
                   name="talle"
                   type="radio"
                   id={`inline-${talle}`}
+                  value={talle}
+                  onChange={onTalleChange}
                 />
               </div>
             ))}
