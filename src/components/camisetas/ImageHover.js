@@ -3,7 +3,7 @@ function ImageHover({ imagen_frente, imagen_atras }) {
     <div className="relative">
       <img
         src={"data:image/png;base64," + imagen_frente}
-        className="rounded-md transition-transform duration-300 transform hover:scale-110"
+        className="rounded-md transition-transform duration-300 transform hover:scale-100"
         alt="Camiseta"
       />
       <img

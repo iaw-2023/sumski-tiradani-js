@@ -4,7 +4,7 @@ function NavbarLink({ center, text, link, onClick }) {
   if (center)
     return (
       <NavLink
-        className="m-auto my-1 hover:font-bold"
+        className="m-auto my-1 align-middle hover:font-bold"
         to={link}
         onClick={onClick}
         style={({ isActive }) => {
