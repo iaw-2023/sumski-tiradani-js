@@ -23,13 +23,7 @@ function CamisetaCard({ camiseta }) {
           <p className="font-bold text-lg pb-2">
             {"$" + Number.parseFloat(camiseta.precio).toFixed(2)}
           </p>
-          <Link
-            to={"/personalizar-camiseta/" + camiseta.nombre}
-            className="flex"
-            state={{
-              camiseta: camiseta,
-            }}
-          >
+          <Link to={"/camiseta/" + camiseta.nombre} className="flex">
             <FancyButton text="Comprar" />
           </Link>
         </div>

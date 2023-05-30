@@ -17,10 +17,7 @@ const App = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/camisetas" element={<Camisetas />} />
         <Route path="/comprar" element={<Comprar />} />
-        <Route
-          path="/personalizar-camiseta/:nombre"
-          element={<CamisetaIndividual />}
-        />
+        <Route path="/camiseta/:nombre?" element={<CamisetaIndividual />} />
       </Routes>
       <Footer />
     </CartContextProvider>
