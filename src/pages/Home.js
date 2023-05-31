@@ -4,41 +4,47 @@ import EmojiPeopleIcon from "@mui/icons-material/EmojiPeople";
 import CheckroomIcon from "@mui/icons-material/Checkroom";
 import FancyButton from "../components/buttons/FancyButton";
 import { Link } from "react-router-dom";
+import Box from "../layouts/Box";
 
 function Home() {
   return (
     <div className="min-h-screen mt-16 transition-colors bg-neutral-50 dark:bg-slate-800">
-      <div className=" w-full min-h-screen m-auto space-y-4 shadow-lg transition-colors bg-neutral-300 dark:bg-slate-700 text-black dark:text-white">
+      <div className="w-full min-h-screen m-auto space-y-16 sm:space-y-8 shadow-lg transition-colors bg-neutral-300 dark:bg-slate-700 text-black dark:text-white">
         <Carousel
           className="col-span-full row-start-1 row-span-2 self-start"
           nextLabel=""
           prevLabel=""
+          indicators={false}
         >
           <Carousel.Item>
             <img
               className="d-block w-100"
-              src="./adidas_argentina.jpg"
+              src="./img/adidas_argentina.jpg"
               alt="First slide"
             />
           </Carousel.Item>
           <Carousel.Item>
             <img
               className="d-block w-100"
-              src="./adidas_river.jpg"
+              src="./img/adidas_river.jpg"
               alt="Second slide"
             />
           </Carousel.Item>
           <Carousel.Item>
             <img
               className="d-block w-100"
-              src="./adidas_boca.jpg"
+              src="./img/adidas_boca.jpg"
               alt="Third slide"
             />
           </Carousel.Item>
         </Carousel>
 
+        <p className="block sm:hidden text-3xl text-center">
+          ¿Por qué nos eligen?
+        </p>
+
         <div className="px-16">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-1 group place-items-center justify-center col-span-full row-span-2 row-end-4 self-center z-10 md:-mt-16">
+          <div className="grid grid-cols-1 md:w-5/6 md:grid-cols-3 gap-4 group place-items-center justify-center col-span-full self-center m-auto z-10 md:-mt-20">
             <div className="max-w-sm dark:bg-slate-800 h-full rounded relative overflow-hidden shadow-lg bg-neutral-50">
               <div className="px-6 py-4 -bottom-10 ">
                 <div className="font-bold text-xl mb-2 text-center">
@@ -75,7 +81,24 @@ function Home() {
           </div>
         </div>
 
-        <div className="flex flex-col w-2/3 sm:flex-row justify-center m-auto space-x-4 pb-4">
+        <p className="text-3xl text-center">Conoce nuestras marcas...</p>
+        <div className="flex flex-col w-1/2 sm:w-fit sm:flex-row justify-center m-auto space-y-4 sm:space-y-0 sm:space-x-10 pb-4">
+          <Box>
+            <img className="sm:h-24" src="./img/adid.jpg" alt="Adidas" />
+          </Box>
+          <Box>
+            <img className="sm:h-24" src="./img/nike.jpg" alt="Nike" />
+          </Box>
+          <Box>
+            <img className="sm:h-24" src="./img/puma.jpg" alt="Puma" />
+          </Box>
+          <Box>
+            <img className="sm:h-24" src="./img/reeb.jpg" alt="Reebok" />
+          </Box>
+        </div>
+
+        <p className="text-3xl text-center">Links de interés</p>
+        <div className="flex flex-col pb-16 sm:pb-4 w-2/3 sm:flex-row justify-center m-auto space-y-4 sm:space-y-0 sm:space-x-4">
           <div className="flex w-full flex-col text-center items-center p-6 bg-white dark:bg-slate-800">
             <CheckroomIcon></CheckroomIcon>
 
