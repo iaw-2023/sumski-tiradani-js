@@ -7,6 +7,7 @@ import Camisetas from "./pages/Camisetas";
 import { CartContextProvider } from "./contexts/CartContext";
 import Comprar from "./pages/Comprar";
 import CamisetaIndividual from "./pages/CamisetaIndividual";
+import Error404 from "./pages/Error404";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="/camisetas" element={<Camisetas />} />
         <Route path="/comprar" element={<Comprar />} />
         <Route path="/camiseta/:nombre?" element={<CamisetaIndividual />} />
+        <Route path="*" element={<Error404 />} />
       </Routes>
       <Footer />
     </CartContextProvider>

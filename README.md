@@ -36,6 +36,11 @@ La aplicación se desarrolló con React como una aplicación web single-page. Co
 
 <br>
 
+- **Prettier:** formatter de código.
+  [_Sitio Oficial_](https://prettier.io/)
+
+<br>
+
 - **React-Bootstrap:** librería que incluye componentes de Bootstrap en React.
   [_Sitio Oficial_](https://getbootstrap.com/)
 
