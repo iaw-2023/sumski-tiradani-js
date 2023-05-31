@@ -1,4 +1,4 @@
-import Box from "../../layouts/Box";
+import BoxAlt from "../../layouts/BoxAlt";
 import PasoLayout from "./PasoLayout";
 import { useState } from "react";
 
@@ -53,7 +53,7 @@ function Entrega({ compraHook, previousStep, nextStep }) {
 
   const CONTENT = (
     <>
-      <Box>
+      <BoxAlt>
         <p className="text-lg font-thin">Ciudad:</p>
         <div className="flex w-full">
           <input
@@ -63,8 +63,8 @@ function Entrega({ compraHook, previousStep, nextStep }) {
             defaultValue={ciudad}
           ></input>
         </div>
-      </Box>
-      <Box>
+      </BoxAlt>
+      <BoxAlt>
         <p className="text-lg font-thin">Dirección:</p>
         <div className="flex w-full space-x-2">
           <input
@@ -80,11 +80,11 @@ function Entrega({ compraHook, previousStep, nextStep }) {
             defaultValue={numero}
           ></input>
         </div>
-      </Box>
+      </BoxAlt>
       {error ? (
-        <Box>
+        <BoxAlt>
           <p className="text-red-600 italic">{error}</p>
-        </Box>
+        </BoxAlt>
       ) : null}
     </>
   );

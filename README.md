@@ -8,7 +8,7 @@ La aplicación se desarrolló con React como una aplicación web single-page. Co
 
 ### Links
 
-- [Deploy en Vercel de la Tienda](https://sumski-tiradani-js-iamjuanpy.vercel.app/)
+- [Deploy en Vercel de la Tienda](https://tucasaca-js-iamjuanpy.vercel.app/)
 - [Deploy en Vercel del ABM y API](https://tucasaca-laravel-iamjuanpy.vercel.app/)
 
 ### Aclaraciones pertinentes
@@ -16,6 +16,8 @@ La aplicación se desarrolló con React como una aplicación web single-page. Co
 - Para mejorar el rendimiento, una vez hecha la carga de todos los productos, estos quedan almacenados en _Session Storage_ del navegador, es decir hasta que se cierre la ventana, para asi solo esperar la descarga de datos del pedido a la API una sola vez.
 
 - El carrito de compras es almacenado en _Local Storage_ del navegador, para que el usuario conserve su carrito de compra para otro momento.
+
+- La aplicación recupera todas las camisetas, incluídas las marcadas como NO ACTIVO, estas no se muestran en la grilla, sin embargo, en caso de acceder al link de una de estas, se podrá ver el producto pero estára marcado como Sin Stock y no se podra comprarlo ni agregarlo al carrito. Esto no sucede con las borradas permanentemente.
 
 ### Herramientas y Librerías utilizadas
 

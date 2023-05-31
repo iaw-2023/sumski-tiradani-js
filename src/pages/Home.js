@@ -38,7 +38,7 @@ function Home() {
         </Carousel>
 
         <div className="px-16">
-          <div className="grid grid-cols-1  md:grid-cols-3 gap-1 group place-items-center justify-center col-span-full row-span-2 row-end-4 self-center z-10 md:-mt-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-1 group place-items-center justify-center col-span-full row-span-2 row-end-4 self-center z-10 md:-mt-16">
             <div className="max-w-sm dark:bg-slate-800 h-full rounded relative overflow-hidden shadow-lg bg-neutral-50">
               <div className="px-6 py-4 -bottom-10 ">
                 <div className="font-bold text-xl mb-2 text-center">

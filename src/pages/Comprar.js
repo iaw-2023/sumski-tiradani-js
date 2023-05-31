@@ -3,7 +3,6 @@ import { CartContext } from "../contexts/CartContext";
 import CenteredContent from "../layouts/CenteredContent";
 import Error from "../components/Error";
 import Box from "../layouts/Box";
-import BoxAlt from "../layouts/BoxAlt";
 import CompraLayout from "../components/comprar/CompraLayout";
 import InfoCompra from "../components/comprar/InfoCompra";
 import DatosPersonales from "../components/comprar/DatosPersonales";
@@ -37,38 +36,36 @@ const Comprar = () => {
   return (
     <CenteredContent>
       <p className="text-3xl font-bold">Comprar...</p>
-      <Box>
-        {cart.length > 0 || paso === 4 ? (
-          <CompraLayout>
-            <BoxAlt>
-              {paso === 1 && (
-                <DatosPersonales
-                  compraHook={[compra, setCompra]}
-                  nextStep={() => setPaso(paso + 1)}
-                />
-              )}
-              {paso === 2 && (
-                <Entrega
-                  compraHook={[compra, setCompra]}
-                  previousStep={() => setPaso(paso - 1)}
-                  nextStep={() => setPaso(paso + 1)}
-                />
-              )}
-              {paso === 3 && (
-                <Pago
-                  compraHook={[compra, setCompra]}
-                  previousStep={() => setPaso(paso - 1)}
-                  nextStep={() => setPaso(paso + 1)}
-                />
-              )}
-              {paso === 4 && <FinCompra compraHook={[compra, setCompra]} />}
-            </BoxAlt>
-            <InfoCompra finalizada={paso === 4} />
-          </CompraLayout>
-        ) : (
-          <Error message="No se puede comprar con el carrito vacío :c" />
-        )}
-      </Box>
+      {cart.length > 0 || paso === 4 ? (
+        <CompraLayout>
+          <Box>
+            {paso === 1 && (
+              <DatosPersonales
+                compraHook={[compra, setCompra]}
+                nextStep={() => setPaso(paso + 1)}
+              />
+            )}
+            {paso === 2 && (
+              <Entrega
+                compraHook={[compra, setCompra]}
+                previousStep={() => setPaso(paso - 1)}
+                nextStep={() => setPaso(paso + 1)}
+              />
+            )}
+            {paso === 3 && (
+              <Pago
+                compraHook={[compra, setCompra]}
+                previousStep={() => setPaso(paso - 1)}
+                nextStep={() => setPaso(paso + 1)}
+              />
+            )}
+            {paso === 4 && <FinCompra compraHook={[compra, setCompra]} />}
+          </Box>
+          <InfoCompra finalizada={paso === 4} />
+        </CompraLayout>
+      ) : (
+        <Error message="No se puede comprar con el carrito vacío :c" />
+      )}
     </CenteredContent>
   );
 };

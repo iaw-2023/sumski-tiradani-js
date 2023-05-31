@@ -1,5 +1,5 @@
 import PasoLayout from "./PasoLayout";
-import Box from "../../layouts/Box";
+import BoxAlt from "../../layouts/BoxAlt";
 import { useState } from "react";
 
 function DatosPersonales({ compraHook, nextStep }) {
@@ -28,7 +28,7 @@ function DatosPersonales({ compraHook, nextStep }) {
 
   const CONTENT = (
     <>
-      <Box>
+      <BoxAlt>
         <p className="text-lg font-thin">Email:</p>
         <div className="flex w-full">
           <input
@@ -39,11 +39,11 @@ function DatosPersonales({ compraHook, nextStep }) {
             defaultValue={email}
           ></input>
         </div>
-      </Box>
+      </BoxAlt>
       {error ? (
-        <Box>
+        <BoxAlt>
           <p className="text-red-600 italic">{error}</p>
-        </Box>
+        </BoxAlt>
       ) : null}
     </>
   );

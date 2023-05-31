@@ -26,17 +26,15 @@ function ItemPedido({ camiseta, pedido }) {
 
   return (
     <div className="flex flex-row pl-20">
-      <div className="flex flex-col sm:flex-row sm:space-x-4 w-full">
+      <div className="flex flex-col lg:flex-row lg:space-x-4 w-full">
+        <p className="text-sm">{"Nombre: " + pedido.nombre_a_estampar}</p>
         <p className="text-sm">
-          {"Nombre a estampar: " + pedido.nombre_a_estampar}
-        </p>
-        <p className="text-sm">
-          {"Número a estampar: " +
+          {"Número: " +
             (pedido.numero_a_estampar !== "0"
               ? pedido.numero_a_estampar
               : "NO ESTAMPAR")}
         </p>
-        <p className="text-sm">{"Talle elegido: " + pedido.talle}</p>
+        <p className="text-sm">{"Talle: " + pedido.talle}</p>
       </div>
       <button
         className="text-neutral-900 dark:text-neutral-50 hover:text-neutral-500 dark:hover:text-slate-700"

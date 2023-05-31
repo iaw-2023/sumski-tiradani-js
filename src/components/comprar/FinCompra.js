@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import PasoLayout from "./PasoLayout";
 import Error from "../Error";
 import Loading from "../Loading";
+import { CartContext } from "../../contexts/CartContext";
 
 const FinCompra = ({ compraHook }) => {
   const API_URL = process.env.REACT_APP_API_URL;
 
   const [compra] = compraHook;
+  const [, setCart] = useContext(CartContext);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -29,13 +31,16 @@ const FinCompra = ({ compraHook }) => {
     })
       .then((response) => {
         if (!response.ok) throw new Error("Error de Red");
-        else setLoading(false);
+        else {
+          setLoading(false);
+          setCart([]);
+        }
       })
       .catch((error) => {
         setLoading(false);
         setError("No se pudo completar la compra, intentalo mas tarde");
       });
-  }, [compra, API_URL]);
+  }, [compra, setCart, API_URL]);
 
   const CONTENT = loading ? (
     <Loading />

@@ -1,13 +1,10 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import PasoLayout from "./PasoLayout";
-import { CartContext } from "../../contexts/CartContext";
-import Box from "../../layouts/Box";
+import BoxAlt from "../../layouts/BoxAlt";
 
 function Pago({ compraHook, previousStep, nextStep }) {
   const PASO = 3;
   const TITULO = "Pago 💰";
-
-  const [, setCart] = useContext(CartContext);
 
   const [opcion, setOpcion] = useState("Efectivo");
   const [compra, setCompra] = compraHook;
@@ -22,19 +19,18 @@ function Pago({ compraHook, previousStep, nextStep }) {
 
   const handleNextStep = () => {
     setCompra({ ...compra, forma_de_pago: opcion });
-    setCart([]);
     nextStep();
   };
 
   const CONTENT = (
     <>
-      <Box>
+      <BoxAlt>
         <p className="text-lg font-thin">Método de pago:</p>
         <select className="text-black p-4 rounded-md" onChange={handleSelect}>
           <option value="Efectivo">Efectivo en la entrega</option>
           <option value="Transferencia Bancaria">Transferencia Bancaria</option>
         </select>
-      </Box>
+      </BoxAlt>
     </>
   );
 

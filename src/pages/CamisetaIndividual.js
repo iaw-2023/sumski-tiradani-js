@@ -161,6 +161,7 @@ function CamisetaIndividual() {
                       id="nombre_a_estampar"
                       type="text"
                       placeholder="Nombre a estampar (Opcional)"
+                      disabled={!camiseta.activo}
                     ></input>
                   </div>
                   <div class="pb-4">
@@ -173,6 +174,7 @@ function CamisetaIndividual() {
                       id="numero_a_estampar"
                       type="text"
                       placeholder="Número a estampar (Opcional)"
+                      disabled={!camiseta.activo}
                     ></input>
                   </div>
                   <Form className="">
@@ -191,6 +193,7 @@ function CamisetaIndividual() {
                             key={idx}
                             value={talle}
                             onChange={onTalleChange}
+                            disabled={!camiseta.activo}
                           />
                         </div>
                       ))}
@@ -213,20 +216,27 @@ function CamisetaIndividual() {
                       </div>
                     </Box>
                   )}
-                  <div className="flex flex-col pt-2 sm:flex-row space-y-4 sm:space-y-0 sm:space-x-2 place-content-end">
-                    <div className="w-full sm:w-fit" to="/cart">
-                      <FancyButtonAlt
-                        text="Comprar"
-                        onClick={() => addToCart(true)}
-                      />
+
+                  {camiseta.activo ? (
+                    <div className="flex flex-col pt-2 sm:flex-row space-y-4 sm:space-y-0 sm:space-x-2 place-content-end">
+                      <div className="w-full sm:w-fit" to="/cart">
+                        <FancyButtonAlt
+                          text="Comprar"
+                          onClick={() => addToCart(true)}
+                        />
+                      </div>
+                      <div className="w-full sm:w-fit">
+                        <FancyButton
+                          onClick={() => addToCart(false)}
+                          text="Añadir al carrito"
+                        />
+                      </div>
                     </div>
-                    <div className="w-full sm:w-fit">
-                      <FancyButton
-                        onClick={() => addToCart(false)}
-                        text="Añadir al carrito"
-                      />
-                    </div>
-                  </div>
+                  ) : (
+                    <p className="text-xl font-bold text-red-600 italic">
+                      {"Sin stock"}
+                    </p>
+                  )}
                 </BoxAlt>
               </div>
             </div>

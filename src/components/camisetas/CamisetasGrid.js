@@ -5,9 +5,9 @@ function CamisetasGrid({ camisetas, cantidad, pageSize, page }) {
   const to = Math.min((page - 1) * pageSize + pageSize, cantidad);
 
   const noCamisetasAvailableMessage = (
-    <div className="w-full m-auto">
-      <p className="font-bold text-4xl">{"Ups :("}</p>
-      <p className="text-lg">
+    <div className="flex flex-col w-full">
+      <p className="font-bold text-4xl text-center">{"Ups :("}</p>
+      <p className="text-lg text-center">
         Lo sentimos, no tenemos camisetas disponibles para la categoría
         seleccionada.
       </p>

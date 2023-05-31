@@ -9,7 +9,7 @@ function ResponsiveGridLayout({ children }) {
         </div>
 
         <Box>
-          <div className="w-100 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-4 pb-4">
+          <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-4 pb-4">
             {children[1]}
           </div>
           {children[2]}

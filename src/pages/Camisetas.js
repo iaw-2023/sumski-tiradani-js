@@ -78,14 +78,16 @@ const Camisetas = () => {
 
   useEffect(() => {
     if (categoriaSelected === DEFAULT_CATEGORIA) {
-      setCamisetasByCategoria(camisetas);
+      setCamisetasByCategoria(camisetas.filter((camiseta) => camiseta.activo));
     } else {
       setCamisetasByCategoria(
-        camisetas.filter((camiseta) => {
-          return camiseta.categorias
-            .map((categoria) => categoria.name)
-            .includes(categoriaSelected);
-        })
+        camisetas
+          .filter((camiseta) => {
+            return camiseta.categorias
+              .map((categoria) => categoria.name)
+              .includes(categoriaSelected);
+          })
+          .filter((camiseta) => camiseta.activo)
       );
     }
     setPage(1);
@@ -98,24 +100,28 @@ const Camisetas = () => {
       {error !== "" && <Error message={error} />}
 
       {!loading.categorias && !loading.camisetas && error === "" && (
-        <ResponsiveGridLayout>
-          <CategoriasSelector
-            categorias={categorias}
-            categoriaSelected={categoriaSelected}
-            setCategoriaSelected={(c) => setCategoriaSelected(c)}
-          />
-          <CamisetasGrid
-            camisetas={camisetasByCategoria}
-            cantidad={camisetasByCategoria.length}
-            pageSize={PAGE_SIZE}
-            page={page}
-          />
-          <CamisetasPaginator
-            cantidad={camisetasByCategoria.length}
-            pageSize={PAGE_SIZE}
-            setPage={setPage}
-          />
-        </ResponsiveGridLayout>
+        <>
+          <p className="text-3xl font-bold">Camisetas</p>
+
+          <ResponsiveGridLayout>
+            <CategoriasSelector
+              categorias={categorias}
+              categoriaSelected={categoriaSelected}
+              setCategoriaSelected={(c) => setCategoriaSelected(c)}
+            />
+            <CamisetasGrid
+              camisetas={camisetasByCategoria}
+              cantidad={camisetasByCategoria.length}
+              pageSize={PAGE_SIZE}
+              page={page}
+            />
+            <CamisetasPaginator
+              cantidad={camisetasByCategoria.length}
+              pageSize={PAGE_SIZE}
+              setPage={setPage}
+            />
+          </ResponsiveGridLayout>
+        </>
       )}
     </CenteredContent>
   );

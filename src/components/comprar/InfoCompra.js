@@ -25,20 +25,20 @@ function InfoCompra({ finalizada }) {
   );
 
   return (
-    <BoxAlt>
+    <Box>
       <p className="text-2xl font-bold">Resumen</p>
-      <Box>
+      <BoxAlt>
         <div className="flex flex-row">
           <p className="text-lg font-bold mr-auto">Productos:</p>
           <p className="text-lg font-semibold">{cantidad}</p>
         </div>
-      </Box>
-      <Box>
+      </BoxAlt>
+      <BoxAlt>
         <div className="flex flex-row">
           <p className="text-lg font-bold mr-auto">Total:</p>
           <p className="text-lg font-semibold">{"$" + precio}</p>
         </div>
-      </Box>
+      </BoxAlt>
       {!finalizada ? (
         <>
           <Link to="/cart" className="w-auto">
@@ -59,7 +59,7 @@ function InfoCompra({ finalizada }) {
           </button>
         </Link>
       )}
-    </BoxAlt>
+    </Box>
   );
 }
 
