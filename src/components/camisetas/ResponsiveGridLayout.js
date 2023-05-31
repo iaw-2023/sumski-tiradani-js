@@ -4,7 +4,7 @@ function ResponsiveGridLayout({ children }) {
   return (
     <>
       <div className="w-full flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0 ">
-        <div className="space-y-4 w-full md:w-1/6">
+        <div className="space-y-4 w-full md:min-w-fit md:w-1/6">
           <Box>{children[0]}</Box>
         </div>
 
