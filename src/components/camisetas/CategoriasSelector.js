@@ -29,7 +29,7 @@ const CategoriasSelector = ({
 
   return (
     <>
-      <div className="flex">
+      <div className="flex w-full">
         <p className="text-bold text-xl">Categorias</p>
         <button
           className="inline ml-auto sm:hidden text-neutral-900 dark:text-neutral-50 pr-3 hover:text-neutral-500 dark:hover:text-slate-700"
@@ -39,7 +39,7 @@ const CategoriasSelector = ({
         </button>
       </div>
       {(width > SM_WIDTH || open) && (
-        <div className="flex flex-col">
+        <div className="flex flex-col w-full">
           <label className="flex flex-row label cursor-pointer">
             <span className="label-text text-base">Todo</span>
             <input

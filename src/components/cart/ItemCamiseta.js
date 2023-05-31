@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function ItemCamiseta({ camiseta, cantidadPedida }) {
   return (
     <>
@@ -7,16 +9,21 @@ function ItemCamiseta({ camiseta, cantidadPedida }) {
           className="rounded-md h-16"
           alt="Camiseta"
         />
+
         <div className="flex-col space-y-2 w-full hidden sm:flex">
-          <p className="text-md"> {camiseta.nombre}</p>
+          <Link to={"/camiseta/" + camiseta.nombre}>
+            <p className="text-md"> {camiseta.nombre}</p>
+          </Link>
           <p className="text-md text-gray-500">{camiseta.descripcion}</p>
         </div>
         <div className="flex-col space-y-2 w-full flex sm:hidden">
-          <p className="text-md">
-            {camiseta.nombre.length > 16
-              ? camiseta.nombre.substring(0, 16) + "..."
-              : camiseta.nombre}
-          </p>
+          <Link to={"/camiseta/" + camiseta.nombre}>
+            <p className="text-md">
+              {camiseta.nombre.length > 16
+                ? camiseta.nombre.substring(0, 16) + "..."
+                : camiseta.nombre}
+            </p>
+          </Link>
           <p className="text-md text-gray-500">
             {camiseta.descripcion.length > 16
               ? camiseta.descripcion.substring(0, 16) + "..."
