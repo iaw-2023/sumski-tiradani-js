@@ -12,7 +12,12 @@ function CamisetaCard({ camiseta }) {
           imagen_frente={camiseta.imagen_frente}
           imagen_atras={camiseta.imagen_atras}
         />
-        <p className="font-bold text-xl mt-2">{camiseta.nombre}</p>
+        <Link
+          to={"/camiseta/" + camiseta.nombre}
+          className="flex hover:underline"
+        >
+          <p className="font-bold text-xl mt-2">{camiseta.nombre}</p>
+        </Link>
         <p className="font-thin mt-2">
           {camiseta.descripcion.length > 16
             ? camiseta.descripcion.substring(0, 16) + "..."

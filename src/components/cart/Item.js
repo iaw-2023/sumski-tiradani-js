@@ -8,12 +8,12 @@ const Item = ({ camiseta, pedidos }) => {
       <ItemCamiseta camiseta={camiseta} cantidadPedida={pedidos.length} />
       <div className="space-y-2">
         {pedidos.map((pedido, idx) => (
-          <>
-            <ItemPedido camiseta={camiseta} pedido={pedido} key={idx} />
+          <div className="w-full space-y-2" key={idx}>
+            <ItemPedido camiseta={camiseta} pedido={pedido} />
             {idx !== pedidos.length - 1 && (
               <hr className="bg-black dark:bg-neutral-50" />
             )}
-          </>
+          </div>
         ))}
       </div>
     </Box>

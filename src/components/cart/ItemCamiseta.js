@@ -11,7 +11,7 @@ function ItemCamiseta({ camiseta, cantidadPedida }) {
         />
 
         <div className="flex-col space-y-2 w-full hidden sm:flex">
-          <Link to={"/camiseta/" + camiseta.nombre}>
+          <Link to={"/camiseta/" + camiseta.nombre} className="hover:font-bold">
             <p className="text-md"> {camiseta.nombre}</p>
           </Link>
           <p className="text-md text-gray-500">{camiseta.descripcion}</p>

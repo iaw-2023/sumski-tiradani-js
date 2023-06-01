@@ -147,17 +147,17 @@ function CamisetaIndividual() {
 
               <div className="w-full sm:w-2/3">
                 <BoxAlt>
-                  <p class="font-bold text-2xl pb-6"> {nombre} </p>
-                  <p class="font-bold text-4xl pb-6">
+                  <p className="font-bold text-2xl pb-6"> {nombre} </p>
+                  <p className="font-bold text-4xl pb-6">
                     {" "}
                     {"$" + Number.parseFloat(camiseta.precio).toFixed(2)}{" "}
                   </p>
-                  <div class="pb-4">
-                    <label class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2">
+                  <div className="pb-4">
+                    <label className="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2">
                       Nombre a estampar
                     </label>
                     <input
-                      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                       ref={input_nombre_a_estampar}
                       id="nombre_a_estampar"
                       type="text"
@@ -165,12 +165,12 @@ function CamisetaIndividual() {
                       disabled={!camiseta.activo}
                     ></input>
                   </div>
-                  <div class="pb-4">
-                    <label class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2">
+                  <div className="pb-4">
+                    <label className="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2">
                       Número a estampar
                     </label>
                     <input
-                      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                       ref={input_numero_a_estampar}
                       id="numero_a_estampar"
                       type="text"
@@ -179,19 +179,18 @@ function CamisetaIndividual() {
                     ></input>
                   </div>
                   <Form className="">
-                    <label class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2">
+                    <label className="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2">
                       Talle
                     </label>
                     {camiseta.talles_disponibles
                       .split(", ")
                       .map((talle, idx) => (
-                        <div className="mb-3 inline-block pr-2 ">
+                        <div className="mb-3 inline-block pr-2 " key={idx}>
                           <Form.Check
                             inline
                             label={" " + talle}
                             name="talle"
                             type="radio"
-                            key={idx}
                             value={talle}
                             onChange={onTalleChange}
                             disabled={!camiseta.activo}

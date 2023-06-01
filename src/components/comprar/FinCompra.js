@@ -10,11 +10,11 @@ const FinCompra = ({ compraHook }) => {
   const [compra] = compraHook;
   const [, setCart] = useContext(CartContext);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
 
   const TITULO = loading
     ? "Confirmando compra... ⏳"
-    : error === ""
+    : errorMsg === ""
     ? "Compra realizada 😊"
     : "Algo salió mal ☹️";
 
@@ -30,21 +30,28 @@ const FinCompra = ({ compraHook }) => {
       body: JSON.stringify(compra),
     })
       .then((response) => {
-        if (!response.ok) throw new Error("Error de Red");
-        else {
-          setLoading(false);
+        if (response.ok) {
           setCart([]);
+          setLoading(false);
+        } else {
+          if (response.status === 422) {
+            setCart([]);
+            setLoading(false);
+            setErrorMsg(
+              "Alguno de los productos de tu carrito no estaban disponibles"
+            );
+          }
         }
       })
       .catch((error) => {
+        setErrorMsg("No se pudo completar la compra, error de Red");
         setLoading(false);
-        setError("No se pudo completar la compra, intentalo mas tarde");
       });
   }, [compra, setCart, API_URL]);
 
   const CONTENT = loading ? (
     <Loading />
-  ) : error === "" ? (
+  ) : errorMsg === "" ? (
     <>
       <p className="font-bold">Muchas gracias por confiar en nosotros!</p>
       <p className="font-light">
@@ -53,7 +60,7 @@ const FinCompra = ({ compraHook }) => {
       </p>
     </>
   ) : (
-    <Error message={error} />
+    <Error message={errorMsg} />
   );
 
   return <PasoLayout title={TITULO} content={CONTENT} buttons={null} />;
