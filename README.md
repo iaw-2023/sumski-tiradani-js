@@ -17,7 +17,9 @@ La aplicación se desarrolló con React como una aplicación web single-page. Co
 
 - El carrito de compras es almacenado en _Local Storage_ del navegador, para que el usuario conserve su carrito de compra para otro momento.
 
-- La aplicación recupera todas las camisetas, incluídas las marcadas como NO ACTIVO, estas no se muestran en la grilla, sin embargo, en caso de acceder al link de una de estas, se podrá ver el producto pero estára marcado como Sin Stock y no se podra comprarlo ni agregarlo al carrito. Esto no sucede con las borradas permanentemente.
+- La aplicación recupera todas las camisetas, incluídas las marcadas como NO ACTIVO, estas no se muestran en la grilla, sin embargo, en caso de acceder al link de una de estas, se podrá ver el producto pero estára marcado como Sin Stock y no se podra comprarlo ni agregarlo al carrito. Esto con las camisetas borradas permanentemente, no ocurre, solo si la tiene en el carrito va a mostrar error al comprarla, pero el link no debería mostrar mas que un mensaje de error.
+
+- Si al momento de la compra ocurre un error de red, se muestra el mensaje de error correspondiente y se conserva el carrito por si se quiere comprar mas tarde. En caso de que el error en la compra sea porque la camiseta ya no está disponible o un talle no lo está, mostrará un mensaje de error notificando esto y limpiará el carrito.
 
 ### Herramientas y Librerías utilizadas
 
