@@ -6,7 +6,7 @@ function HamburgerButton({ openHook }) {
 
   return (
     <button
-      className="mr-10 text-neutral-900 dark:text-neutral-50 hover:text-neutral-500 dark:hover:text-slate-700"
+      className="mr-16 text-neutral-900 dark:text-neutral-50 hover:text-neutral-500 dark:hover:text-slate-700"
       onClick={() => setOpen(!open)}
     >
       {open ? <MenuOpenIcon /> : <MenuIcon />}

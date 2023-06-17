@@ -9,12 +9,14 @@ import DatosPersonales from "../components/comprar/DatosPersonales";
 import Entrega from "../components/comprar/Entrega";
 import Pago from "../components/comprar/Pago";
 import FinCompra from "../components/comprar/FinCompra";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Comprar = () => {
   const [cart] = useContext(CartContext);
+  const { user, loginWithRedirect, isAuthenticated } = useAuth0();
 
   const [compra, setCompra] = useState({
-    cliente: "",
+    cliente: user ? user.email : "",
     forma_de_pago: "",
     direccion_de_entrega: "",
     pedidos: cart
@@ -33,41 +35,43 @@ const Comprar = () => {
 
   const [paso, setPaso] = useState(1);
 
-  return (
-    <CenteredContent>
-      <p className="text-3xl font-bold">Comprar...</p>
-      {cart.length > 0 || paso === 4 ? (
-        <CompraLayout>
-          <Box>
-            {paso === 1 && (
-              <DatosPersonales
-                compraHook={[compra, setCompra]}
-                nextStep={() => setPaso(paso + 1)}
-              />
-            )}
-            {paso === 2 && (
-              <Entrega
-                compraHook={[compra, setCompra]}
-                previousStep={() => setPaso(paso - 1)}
-                nextStep={() => setPaso(paso + 1)}
-              />
-            )}
-            {paso === 3 && (
-              <Pago
-                compraHook={[compra, setCompra]}
-                previousStep={() => setPaso(paso - 1)}
-                nextStep={() => setPaso(paso + 1)}
-              />
-            )}
-            {paso === 4 && <FinCompra compraHook={[compra, setCompra]} />}
-          </Box>
-          <InfoCompra finalizada={paso === 4} />
-        </CompraLayout>
-      ) : (
-        <Error message="No se puede comprar con el carrito vacío :c" />
-      )}
-    </CenteredContent>
-  );
+  if (isAuthenticated)
+    return (
+      <CenteredContent>
+        <p className="text-3xl font-bold">Comprar...</p>
+        {cart.length > 0 || paso === 4 ? (
+          <CompraLayout>
+            <Box>
+              {paso === 1 && (
+                <DatosPersonales
+                  compraHook={[compra, setCompra]}
+                  nextStep={() => setPaso(paso + 1)}
+                />
+              )}
+              {paso === 2 && (
+                <Entrega
+                  compraHook={[compra, setCompra]}
+                  previousStep={() => setPaso(paso - 1)}
+                  nextStep={() => setPaso(paso + 1)}
+                />
+              )}
+              {paso === 3 && (
+                <Pago
+                  compraHook={[compra, setCompra]}
+                  previousStep={() => setPaso(paso - 1)}
+                  nextStep={() => setPaso(paso + 1)}
+                />
+              )}
+              {paso === 4 && <FinCompra compraHook={[compra, setCompra]} />}
+            </Box>
+            <InfoCompra finalizada={paso === 4} />
+          </CompraLayout>
+        ) : (
+          <Error message="No se puede comprar con el carrito vacío :c" />
+        )}
+      </CenteredContent>
+    );
+  else return loginWithRedirect();
 };
 
 export default Comprar;
