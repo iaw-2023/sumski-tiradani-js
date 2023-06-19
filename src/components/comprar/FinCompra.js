@@ -7,7 +7,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const FinCompra = ({ compraHook }) => {
   const API_URL = process.env.REACT_APP_API_URL;
-  const { isAuthenticated, getAccessTokenSilently } = useAuth0();
+  const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
 
   const [compra] = compraHook;
   const [, setCart] = useContext(CartContext);
@@ -56,9 +56,14 @@ const FinCompra = ({ compraHook }) => {
             setLoading(false);
           });
       };
-      buy();
+      if (!user.email_verified) {
+        setErrorMsg(
+          "No se pudo realizar la compra, el mail no está verificado"
+        );
+        setLoading(false);
+      } else buy();
     }
-  }, [compra, setCart, API_URL, getAccessTokenSilently, isAuthenticated]);
+  }, [compra, setCart, API_URL, user, getAccessTokenSilently, isAuthenticated]);
 
   const CONTENT = loading ? (
     <Loading />

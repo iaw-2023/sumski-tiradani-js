@@ -55,6 +55,11 @@ const Perfil = () => {
           <p className="text-2xl align-middle">
             Hola {user.email} {":)"}
           </p>
+          {!user.email_verified && (
+            <p className="inline md:hidden italic text-red-700 align-bottom">
+              Recordá verificar tu mail para poder realizar compras
+            </p>
+          )}
           <button
             className="bg-red-700 rounded-lg p-2 px-4 text-white font-bold w-full md:w-fit md:ml-auto hover:bg-red-900"
             onClick={() =>
@@ -64,6 +69,11 @@ const Perfil = () => {
             Desconectarse
           </button>
         </div>
+        {!user.email_verified && (
+          <p className="hidden md:inline italic text-red-700 align-bottom">
+            Recordá verificar tu mail para poder realizar compras
+          </p>
+        )}
         <p className="text-3xl font-bold">Tus Compras</p>
         <PurchaseHistory
           history={history}

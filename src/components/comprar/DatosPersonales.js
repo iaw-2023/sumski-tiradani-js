@@ -1,6 +1,7 @@
 import PasoLayout from "./PasoLayout";
 import BoxAlt from "../../layouts/BoxAlt";
 import { useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function DatosPersonales({ compraHook, nextStep }) {
   const PASO = 1;
@@ -8,6 +9,7 @@ function DatosPersonales({ compraHook, nextStep }) {
 
   const [compra] = compraHook;
   const [email] = useState(compra.cliente);
+  const { user } = useAuth0();
 
   const handleNextStep = () => {
     nextStep();
@@ -22,9 +24,13 @@ function DatosPersonales({ compraHook, nextStep }) {
             {email}
           </p>
         </div>
+        {!user.email_verified && (
+          <p className="font-bold italic text-red-700 align-bottom">
+            Verificá tu mail para poder realizar compras
+          </p>
+        )}
         <p className="text-lg font-thin italic">
-          Verificá tener acceso a este mail, este es nuestro medio de
-          comunicación con vos.
+          Recordá que este es nuestro método de comunicación con vos.
         </p>
       </BoxAlt>
     </>
@@ -39,12 +45,23 @@ function DatosPersonales({ compraHook, nextStep }) {
         Paso previo
       </button>
 
-      <button
-        className="bg-blue-700 p-1 rounded-md w-full text-white font-bold hover:bg-blue-800"
-        onClick={handleNextStep}
-      >
-        Siguiente paso
-      </button>
+      {user.email_verified && (
+        <button
+          className="bg-blue-700 p-1 rounded-md w-full text-white font-bold hover:bg-blue-800"
+          onClick={handleNextStep}
+        >
+          Siguiente paso
+        </button>
+      )}
+
+      {!user.email_verified && (
+        <button
+          className="bg-blue-900 p-1 rounded-md w-full text-white font-bold"
+          disabled
+        >
+          Siguiente paso
+        </button>
+      )}
     </>
   );
 
