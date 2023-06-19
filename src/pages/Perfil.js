@@ -5,7 +5,13 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const Perfil = () => {
   const API_URL = process.env.REACT_APP_API_URL;
-  const { user, loginWithRedirect, logout, isAuthenticated } = useAuth0();
+  const {
+    user,
+    loginWithRedirect,
+    logout,
+    isAuthenticated,
+    getAccessTokenSilently,
+  } = useAuth0();
 
   const [loading, setLoading] = useState(true);
   const [history, setHistory] = useState([]);
@@ -13,28 +19,33 @@ const Perfil = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      fetch(API_URL + "/compras/" + user.email, {
-        method: "GET",
-        headers: {
-          "X-CSRF-TOKEN": "",
-          accept: "application/json",
-          "content-type": "application/json",
-        },
-      })
-        .then((response) => {
-          if (!response.ok) throw new Error("Error de Red");
-          return response.json();
+      const getProfileData = async () => {
+        const token = await getAccessTokenSilently();
+        await fetch(API_URL + "/compras/" + user.email, {
+          method: "GET",
+          headers: {
+            "X-CSRF-TOKEN": "",
+            Authorization: `Bearer ${token}`,
+            accept: "application/json",
+            "content-type": "application/json",
+          },
         })
-        .then((data) => {
-          setLoading(false);
-          setHistory(data);
-        })
-        .catch((error) => {
-          setLoading(false);
-          setErrorMessage("Error");
-        });
+          .then((response) => {
+            if (!response.ok) throw new Error("Error de Red");
+            return response.json();
+          })
+          .then((data) => {
+            setLoading(false);
+            setHistory(data);
+          })
+          .catch((error) => {
+            setLoading(false);
+            setErrorMessage("Error");
+          });
+      };
+      getProfileData();
     }
-  }, [API_URL, isAuthenticated, user]);
+  }, [API_URL, isAuthenticated, user, getAccessTokenSilently]);
 
   if (isAuthenticated)
     return (

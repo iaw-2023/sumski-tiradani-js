@@ -15,7 +15,10 @@ root.render(
     <Auth0Provider
       domain={domain}
       clientId={clientId}
-      authorizationParams={{ redirect_uri: window.location.origin }}
+      authorizationParams={{
+        redirect_uri: window.location.origin,
+        audience: "tu_casaca_laravel",
+      }}
     >
       <BrowserRouter>
         <div className="h-screen">
