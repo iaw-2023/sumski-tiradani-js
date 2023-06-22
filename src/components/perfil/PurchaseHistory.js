@@ -12,20 +12,23 @@ const PurchaseHistory = ({ history, loading, errorMessage }) => {
         </Box>
       ) : (
         <>
-          {history.map((purchase, key) => {
-            return (
-              <Purchase
-                cantidad={purchase.pedidos.length}
-                pedidos={purchase.pedidos}
-                direccion={purchase.direccion_de_entrega}
-                pago={purchase.forma_de_pago}
-                precio={purchase.precio_total}
-                fecha={purchase.fecha_hora}
-                estado={purchase.estado}
-                key={key}
-              />
-            );
-          })}
+          {history
+            .slice(0)
+            .reverse()
+            .map((purchase, key) => {
+              return (
+                <Purchase
+                  cantidad={purchase.pedidos.length}
+                  pedidos={purchase.pedidos}
+                  direccion={purchase.direccion_de_entrega}
+                  pago={purchase.forma_de_pago}
+                  precio={purchase.precio_total}
+                  fecha={purchase.fecha_hora}
+                  estado={purchase.estado}
+                  key={key}
+                />
+              );
+            })}
         </>
       )}
     </>

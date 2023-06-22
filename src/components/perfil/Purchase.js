@@ -56,10 +56,10 @@ const Purchase = ({
             <p className="font-medium w-full">
               {direccion.replaceAll("|", ", ")}
             </p>
-            <p className="font-medium w-full ml-auto text-right">{pago}</p>
           </div>
           <div className="flex flex-row w-full">
-            <p className="font-medium w-full ml-auto text-right">{estado}</p>
+            <p className="font-medium text-left">{pago}</p>
+            <p className="font-medium ml-auto text-right">{estado}</p>
           </div>
         </div>
       </BoxAlt>

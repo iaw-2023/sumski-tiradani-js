@@ -51,8 +51,8 @@ function Home() {
                   TODAS LAS TARJETAS
                 </div>
                 <p className="text-gray-700 dark:text-gray-400 text-base text-center">
-                  Abona con todos los medios de pago. Mercado Pago con dinero
-                  disponible o tarjeta. ¡Y siempre es seguro!
+                  Abona con tarjeta de débito o crédito a través de Mercado
+                  Pago. ¡Siempre es seguro!
                 </p>
               </div>
             </div>

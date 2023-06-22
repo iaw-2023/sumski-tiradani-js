@@ -10,7 +10,6 @@ import Entrega from "../components/comprar/Entrega";
 import Pago from "../components/comprar/Pago";
 import FinCompra from "../components/comprar/FinCompra";
 import { useAuth0 } from "@auth0/auth0-react";
-import CardPaymentBrick from "../components/comprar/CardPaymentBrick";
 
 const Comprar = () => {
   const [cart] = useContext(CartContext);
@@ -57,7 +56,7 @@ const Comprar = () => {
                 />
               )}
               {paso === 3 && (
-                <CardPaymentBrick
+                <Pago
                   compraHook={[compra, setCompra]}
                   previousStep={() => setPaso(paso - 1)}
                   nextStep={() => setPaso(paso + 1)}

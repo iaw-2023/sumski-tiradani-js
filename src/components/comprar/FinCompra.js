@@ -28,7 +28,6 @@ const FinCompra = ({ compraHook }) => {
         await fetch(API_URL + "/comprar", {
           method: "POST",
           headers: {
-            "X-CSRF-TOKEN": "",
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
             accept: "application/json",
@@ -39,14 +38,20 @@ const FinCompra = ({ compraHook }) => {
             if (response.ok) {
               setCart([]);
               setLoading(false);
+            }
+            if (response.status === 422) return response.json();
+          })
+          .then((data) => {
+            const responseError = data.message;
+            if (responseError.includes("forma_de_pago")) {
+              setLoading(false);
+              setErrorMsg("Hubo un problema con el pago, intentalo más tarde");
             } else {
-              if (response.status === 422) {
-                setCart([]);
-                setLoading(false);
-                setErrorMsg(
-                  "Alguno de los productos de tu carrito no estaban disponibles"
-                );
-              }
+              setCart([]);
+              setLoading(false);
+              setErrorMsg(
+                "Algunos de los productos de tu carrito no estaban disponibles"
+              );
             }
           })
           .catch((error) => {
