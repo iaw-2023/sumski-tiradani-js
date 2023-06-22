@@ -43,13 +43,15 @@ const FinCompra = ({ compraHook }) => {
           if (data.message.includes("forma_de_pago")) {
             setLoading(false);
             setErrorMsg("Hubo un problema con el pago, intentalo más tarde");
-          }
-          if (data.message.includes("nombre_camiseta")) {
+          } else if (data.message.includes("nombre_camiseta")) {
             setCart([]);
             setLoading(false);
             setErrorMsg(
               "Algunos de los productos de tu carrito no estaban disponibles"
             );
+          } else {
+            setLoading(false);
+            setErrorMsg("No se pudo realizar la compra");
           }
         }
       };
