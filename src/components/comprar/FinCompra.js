@@ -25,7 +25,7 @@ const FinCompra = ({ compraHook }) => {
       const buy = async () => {
         setLoading(true);
         const token = await getAccessTokenSilently();
-        await fetch(API_URL + "/comprar", {
+        const response = await fetch(API_URL + "/comprar", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -33,34 +33,27 @@ const FinCompra = ({ compraHook }) => {
             accept: "application/json",
           },
           body: JSON.stringify(compra),
-        })
-          .then((response) => {
-            if (response.ok) {
-              setCart([]);
-              setLoading(false);
-            }
-            if (response.status === 422) return response.json();
-          })
-          .then((data) => {
-            const responseError = data.message;
-            if (responseError.includes("forma_de_pago")) {
-              setLoading(false);
-              setErrorMsg("Hubo un problema con el pago, intentalo más tarde");
-            } else {
-              setCart([]);
-              setLoading(false);
-              setErrorMsg(
-                "Algunos de los productos de tu carrito no estaban disponibles"
-              );
-            }
-          })
-          .catch((error) => {
-            setErrorMsg(
-              "No se pudo completar la compra, error de red o autenticación"
-            );
+        });
+        const data = response.ok ? {} : await response.json();
+
+        if (response.ok) {
+          setCart([]);
+          setLoading(false);
+        } else {
+          if (data.message.includes("forma_de_pago")) {
             setLoading(false);
-          });
+            setErrorMsg("Hubo un problema con el pago, intentalo más tarde");
+          }
+          if (data.message.includes("nombre_camiseta")) {
+            setCart([]);
+            setLoading(false);
+            setErrorMsg(
+              "Algunos de los productos de tu carrito no estaban disponibles"
+            );
+          }
+        }
       };
+
       if (!user.email_verified) {
         setErrorMsg(
           "No se pudo realizar la compra, el mail no está verificado"
