@@ -11,6 +11,8 @@ export default function ProfileButton() {
       <button
         className="group text-neutral-900 dark:text-neutral-50 pl-2 hover:text-neutral-500 dark:hover:text-slate-700"
         size={30}
+        alt="Profile"
+        aria-label="Botón perfil"
       >
         <AccountBoxIcon />
       </button>

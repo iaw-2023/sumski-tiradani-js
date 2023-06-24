@@ -15,6 +15,8 @@ export default function DarkModeButton() {
         className="text-neutral-900 dark:text-neutral-50 hover:text-neutral-500 dark:hover:text-slate-700"
         onClick={toggleDarkMode}
         size={30}
+        aria-label="Botón modo oscuro"
+        alt="Botón modo oscuro"
       >
         {colorTheme === "light" ? (
           <DarkModeIcon color="inherit" />
