@@ -1,10 +1,69 @@
+import { render } from "@testing-library/react";
 import BoxAlt from "../../layouts/BoxAlt";
 import PasoLayout from "./PasoLayout";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 
 function Entrega({ compraHook, previousStep, nextStep }) {
   const PASO = 2;
   const TITULO = "Datos de Entrega 🚛";
+
+  const GEO_API_KEY = "1511c9681a4c49d48e6fbc58c9afa4bf";
+  const GEO_API_URL = "https://api.geoapify.com/v1/geocode/reverse?";
+  const [latitude, setLatitude] = useState("");
+  const [longitude, setLongitude] = useState("");
+  const [data, setData] = useState([]);
+  const [request, setRequest] = useState("");
+
+  useEffect(() => {
+    if (!navigator.geolocation) {
+      return;
+    }
+    navigator.geolocation.getCurrentPosition((position) => {
+      setLatitude(position.coords.latitude);
+      setLongitude(position.coords.longitude);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (latitude !== "" && longitude !== "") {
+      // Setting up the request for the API fetch
+      setRequest(
+        GEO_API_URL +
+          "lat=" +
+          latitude +
+          "&lon=" +
+          longitude +
+          "&format=json&apiKey=" +
+          GEO_API_KEY
+      );
+
+      // Map rendering
+      const position = [latitude, longitude];
+    }
+  }, [latitude, longitude]);
+
+  useEffect(() => {
+    if (request !== "") {
+      console.log(longitude);
+      console.log(latitude);
+      console.log(request);
+
+      fetch(request)
+        .then((response) => {
+          if (!response.ok) throw new Error("Error de red");
+          return response.json();
+        })
+        .then((data) => {
+          setData(data.results[0]);
+        })
+        .catch((error) => {
+          setError("No se pudo obtener la localizacion");
+          console.log(latitude);
+          console.log(longitude);
+        });
+    }
+  }, [request]);
 
   const [compra, setCompra] = compraHook;
   const [ciudad, setCiudad] = useState(
@@ -60,7 +119,7 @@ function Entrega({ compraHook, previousStep, nextStep }) {
             className="w-full text-black p-3 rounded-lg"
             onChange={handleInputCiudad}
             placeholder="Ciudad"
-            defaultValue={ciudad}
+            defaultValue={data.city}
           ></input>
         </div>
       </BoxAlt>
@@ -71,14 +130,31 @@ function Entrega({ compraHook, previousStep, nextStep }) {
             className="w-full text-black p-3 rounded-lg"
             onChange={handleInputCalle}
             placeholder="Calle"
-            defaultValue={calle}
+            defaultValue={data.street}
           ></input>
           <input
             className="w-full text-black p-3 rounded-lg"
             onChange={handleInputNumero}
             placeholder="Número"
-            defaultValue={numero}
+            defaultValue={data.housenumber}
           ></input>
+        </div>
+        <div>
+          {/* <MapContainer
+            center={[latitude, longitude]}
+            zoom={13}
+            scrollWheelZoom={false}
+          >
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <Marker position={[latitude, longitude]}>
+              <Popup>
+                A pretty CSS3 popup. <br /> Easily customizable.
+              </Popup>
+            </Marker>
+          </MapContainer> */}
         </div>
       </BoxAlt>
       {error ? (
