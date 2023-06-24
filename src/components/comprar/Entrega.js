@@ -1,69 +1,23 @@
-import { render } from "@testing-library/react";
 import BoxAlt from "../../layouts/BoxAlt";
 import PasoLayout from "./PasoLayout";
 import { useEffect, useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 
+import { Icon } from "leaflet";
+import markerIconPng from "leaflet/dist/images/marker-icon.png";
+
 function Entrega({ compraHook, previousStep, nextStep }) {
   const PASO = 2;
   const TITULO = "Datos de Entrega 🚛";
 
-  const GEO_API_KEY = "1511c9681a4c49d48e6fbc58c9afa4bf";
-  const GEO_API_URL = "https://api.geoapify.com/v1/geocode/reverse?";
+  const GEO_API_URL = process.env.REACT_APP_GEO_API_URL;
+  const GEO_API_KEY = process.env.REACT_APP_GEO_API_KEY;
+  const GEO_API_REVERSE_KEY = process.env.REACT_APP_GEO_API_REVERSE_KEY;
+
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
-  const [data, setData] = useState([]);
+  const [reverseRequest, setReverseRequest] = useState("");
   const [request, setRequest] = useState("");
-
-  useEffect(() => {
-    if (!navigator.geolocation) {
-      return;
-    }
-    navigator.geolocation.getCurrentPosition((position) => {
-      setLatitude(position.coords.latitude);
-      setLongitude(position.coords.longitude);
-    });
-  }, []);
-
-  useEffect(() => {
-    if (latitude !== "" && longitude !== "") {
-      // Setting up the request for the API fetch
-      setRequest(
-        GEO_API_URL +
-          "lat=" +
-          latitude +
-          "&lon=" +
-          longitude +
-          "&format=json&apiKey=" +
-          GEO_API_KEY
-      );
-
-      // Map rendering
-      const position = [latitude, longitude];
-    }
-  }, [latitude, longitude]);
-
-  useEffect(() => {
-    if (request !== "") {
-      console.log(longitude);
-      console.log(latitude);
-      console.log(request);
-
-      fetch(request)
-        .then((response) => {
-          if (!response.ok) throw new Error("Error de red");
-          return response.json();
-        })
-        .then((data) => {
-          setData(data.results[0]);
-        })
-        .catch((error) => {
-          setError("No se pudo obtener la localizacion");
-          console.log(latitude);
-          console.log(longitude);
-        });
-    }
-  }, [request]);
 
   const [compra, setCompra] = compraHook;
   const [ciudad, setCiudad] = useState(
@@ -76,6 +30,64 @@ function Entrega({ compraHook, previousStep, nextStep }) {
     compra.direccion_de_entrega.split("|")[2] || ""
   );
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (calle === "" && numero === "" && ciudad === "") {
+      if (!navigator.geolocation) {
+        return;
+      }
+      navigator.geolocation.getCurrentPosition((position) => {
+        setLatitude(position.coords.latitude);
+        setLongitude(position.coords.longitude);
+
+        setReverseRequest(
+          GEO_API_URL +
+            "reverse?" +
+            "lat=" +
+            position.coords.latitude +
+            "&lon=" +
+            position.coords.longitude +
+            "&format=json&apiKey=" +
+            GEO_API_REVERSE_KEY
+        );
+      });
+    }
+  }, [calle, numero, ciudad, GEO_API_URL, GEO_API_REVERSE_KEY]);
+
+  useEffect(() => {
+    if (reverseRequest !== "") {
+      fetch(reverseRequest)
+        .then((response) => {
+          if (!response.ok) throw new Error("Error de red");
+          return response.json();
+        })
+        .then((data) => {
+          setCalle(data.results[0].street);
+          setNumero(data.results[0].housenumber);
+          setCiudad(data.results[0].city);
+        })
+        .catch((error) => {
+          setError("No se pudo obtener la localizacion");
+        });
+    }
+  }, [reverseRequest]);
+
+  useEffect(() => {
+    if (request !== "") {
+      fetch(request)
+        .then((response) => {
+          if (!response.ok) throw new Error("Error de red");
+          return response.json();
+        })
+        .then((data) => {
+          setLatitude(data.results[0].lat);
+          setLongitude(data.results[0].lon);
+        })
+        .catch((error) => {
+          setError("No se pudo obtener la localizacion");
+        });
+    }
+  }, [request]);
 
   const handleInputCiudad = (event) => {
     setCiudad(event.target.value);
@@ -92,6 +104,28 @@ function Entrega({ compraHook, previousStep, nextStep }) {
 
   const handlePreviousStep = () => {
     previousStep();
+  };
+
+  const handleSearch = () => {
+    if (ciudad === "" || !/^[A-zÀ-ú\s,.]+$/i.test(ciudad))
+      setError("Se requiere un nombre válido de ciudad");
+    else if (calle === "" || !/^[A-zÀ-ú\s.]+$/i.test(calle))
+      setError("Se requiere un nombre válido de calle");
+    else if (numero === "" || !/^\d{1,}$/i.test(numero))
+      setError("El número de calle tiene que ser válido");
+    else {
+      setRequest(
+        GEO_API_URL +
+          "search?housenumber=" +
+          numero +
+          "&street=" +
+          calle +
+          "&city=" +
+          ciudad +
+          "&country=Argentina&format=json&apiKey=" +
+          GEO_API_KEY
+      );
+    }
   };
 
   const handleNextStep = () => {
@@ -119,7 +153,7 @@ function Entrega({ compraHook, previousStep, nextStep }) {
             className="w-full text-black p-3 rounded-lg"
             onChange={handleInputCiudad}
             placeholder="Ciudad"
-            defaultValue={data.city}
+            value={ciudad}
           ></input>
         </div>
       </BoxAlt>
@@ -130,31 +164,14 @@ function Entrega({ compraHook, previousStep, nextStep }) {
             className="w-full text-black p-3 rounded-lg"
             onChange={handleInputCalle}
             placeholder="Calle"
-            defaultValue={data.street}
+            value={calle}
           ></input>
           <input
             className="w-full text-black p-3 rounded-lg"
             onChange={handleInputNumero}
             placeholder="Número"
-            defaultValue={data.housenumber}
+            value={numero}
           ></input>
-        </div>
-        <div>
-          {/* <MapContainer
-            center={[latitude, longitude]}
-            zoom={13}
-            scrollWheelZoom={false}
-          >
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <Marker position={[latitude, longitude]}>
-              <Popup>
-                A pretty CSS3 popup. <br /> Easily customizable.
-              </Popup>
-            </Marker>
-          </MapContainer> */}
         </div>
       </BoxAlt>
       {error ? (
@@ -162,6 +179,46 @@ function Entrega({ compraHook, previousStep, nextStep }) {
           <p className="text-red-600 italic">{error}</p>
         </BoxAlt>
       ) : null}
+
+      <BoxAlt>
+        <button
+          className="bg-sky-700 p-1 mb-2 rounded-md w-full text-white font-bold hover:bg-sky-800"
+          onClick={handleSearch}
+        >
+          Mostrar en el mapa 📍
+        </button>
+        <MapContainer
+          className="h-96 w-full"
+          center={{
+            lat: latitude !== "" ? latitude : -38.71,
+            lng: longitude !== "" ? longitude : -62.27,
+          }}
+          zoom={13}
+          scrollWheelZoom={true}
+          zoomAnimation={true}
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          {latitude !== "" && longitude !== "" && (
+            <Marker
+              position={{ lat: latitude, lng: longitude }}
+              icon={
+                new Icon({
+                  iconUrl: markerIconPng,
+                  iconSize: [25, 41],
+                  iconAnchor: [12, 41],
+                })
+              }
+            >
+              <Popup>
+                Dirección de entrega <br /> {calle + " " + numero}{" "}
+              </Popup>{" "}
+            </Marker>
+          )}
+        </MapContainer>
+      </BoxAlt>
     </>
   );
 

@@ -11,7 +11,7 @@ function Pago({ compraHook, previousStep, nextStep }) {
   const MP_KEY = process.env.REACT_APP_MP_KEY;
 
   initMercadoPago(MP_KEY, {
-    locale: "es",
+    locale: "es-AR",
   });
 
   const [compra, setCompra] = compraHook;
@@ -42,8 +42,10 @@ function Pago({ compraHook, previousStep, nextStep }) {
 
   const customization = {
     paymentMethods: {
+      minInstallments: 1,
       maxInstallments: 1,
     },
+
     visual: {
       style: {
         customVariables: {
@@ -95,9 +97,7 @@ function Pago({ compraHook, previousStep, nextStep }) {
     });
   };
 
-  const onError = async (error) => {
-    handleNextStep();
-  };
+  const onError = async (error) => {};
 
   const onReady = async () => {
     setLoading(false);
@@ -117,8 +117,8 @@ function Pago({ compraHook, previousStep, nextStep }) {
           initialization={initialization}
           customization={customization}
           onSubmit={onSubmit}
-          onReady={onReady}
           onError={onError}
+          onReady={onReady}
         />
       </div>
     </>

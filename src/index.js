@@ -5,6 +5,7 @@ import { Auth0Provider } from "@auth0/auth0-react";
 
 import App from "./App";
 import "./styles/index.css";
+import "leaflet/dist/leaflet.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const domain = process.env.REACT_APP_LOGIN_URL;
