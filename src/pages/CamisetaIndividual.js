@@ -194,6 +194,7 @@ function CamisetaIndividual() {
                             value={talle}
                             onChange={onTalleChange}
                             disabled={!camiseta.activo}
+                            aria-label={talle}
                           />
                         </div>
                       ))}

@@ -69,6 +69,7 @@ const Purchase = ({
           <button
             className="ml-auto hover:text-neutral-500 dark:hover:text-slate-700"
             onClick={() => setDetalleShown(!detalleShown)}
+            aria-label="Mostrar detalle de compra"
           >
             {detalleShown ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </button>

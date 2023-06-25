@@ -34,6 +34,7 @@ const CategoriasSelector = ({
         <button
           className="inline ml-auto sm:hidden text-neutral-900 dark:text-neutral-50 pr-3 hover:text-neutral-500 dark:hover:text-slate-700"
           onClick={() => setOpen(!open)}
+          aria-label="Mostrar lista de categorias"
         >
           {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
         </button>
