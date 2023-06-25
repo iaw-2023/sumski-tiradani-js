@@ -2,7 +2,6 @@ import BoxAlt from "../../layouts/BoxAlt";
 import PasoLayout from "./PasoLayout";
 import { useEffect, useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-
 import { Icon } from "leaflet";
 import markerIconPng from "leaflet/dist/images/marker-icon.png";
 
@@ -18,6 +17,8 @@ function Entrega({ compraHook, previousStep, nextStep }) {
   const [longitude, setLongitude] = useState("");
   const [reverseRequest, setReverseRequest] = useState("");
   const [request, setRequest] = useState("");
+
+  const [loading, setLoading] = useState(false);
 
   const [compra, setCompra] = compraHook;
   const [ciudad, setCiudad] = useState(
@@ -56,6 +57,7 @@ function Entrega({ compraHook, previousStep, nextStep }) {
 
   useEffect(() => {
     if (reverseRequest !== "") {
+      setLoading(true);
       fetch(reverseRequest)
         .then((response) => {
           if (!response.ok) throw new Error("Error de red");
@@ -65,15 +67,18 @@ function Entrega({ compraHook, previousStep, nextStep }) {
           setCalle(data.results[0].street);
           setNumero(data.results[0].housenumber);
           setCiudad(data.results[0].city);
+          setLoading(false);
         })
         .catch((error) => {
           setError("No se pudo obtener la localizacion");
+          setLoading(false);
         });
     }
   }, [reverseRequest]);
 
   useEffect(() => {
     if (request !== "") {
+      setLoading(true);
       fetch(request)
         .then((response) => {
           if (!response.ok) throw new Error("Error de red");
@@ -85,9 +90,11 @@ function Entrega({ compraHook, previousStep, nextStep }) {
           setCiudad(data.results[0].city);
           setLatitude(data.results[0].lat);
           setLongitude(data.results[0].lon);
+          setLoading(false);
         })
         .catch((error) => {
           setError("No se pudo obtener la localizacion");
+          setLoading(false);
         });
     }
   }, [request]);
@@ -188,7 +195,7 @@ function Entrega({ compraHook, previousStep, nextStep }) {
           className="bg-sky-700 p-1 mb-2 rounded-md w-full text-white font-bold hover:bg-sky-800"
           onClick={handleSearch}
         >
-          Mostrar en el mapa 📍
+          {"Mostrar en el mapa" + (loading ? "... ⌛" : " 📍")}
         </button>
         <MapContainer
           className="h-96 w-full"

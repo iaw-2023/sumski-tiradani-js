@@ -3,6 +3,7 @@ const FancyButton = ({ onClick, text }) => {
     <button
       onClick={onClick}
       className="w-full relative inline-flex items-center justify-center px-4 py-2 overflow-hidden rounded-lg shadow-2xl group"
+      aria-label={text}
     >
       <span className="absolute top-0 left-0 w-full h-40 -mt-10 -ml-3 transition-all duration-700 bg-red-500 rounded-full blur-md ease"></span>
       <span className="absolute inset-0 w-full h-full transition duration-700 blur-md">
