@@ -24,6 +24,8 @@ Para alcanzar la promoción se implementaron las siguientes funcionalidades adic
   <br> &nbsp;
 - **Servicio Web en JS**: como servicio web utilizamos **GeoApify**, que permite hacer búsquedas por nombre de calle o por latitud y longitud, para autocompletar nuestra ubicación en los datos de entrega, o también para mostrar en un mapa de **React-Leaflet** la ubicación de la dirección ingresada.
   <br> &nbsp;
+- **Servicio Web en Laravel**: nada en el frontend.
+  <br> &nbsp;
 - **Responsive en JS**: para un display correcto tanto en una pantalla de una PC como en un celular, se utilizó principalmente las clases de tailwind:
   <br><code> sm:_css_, md:_css_, lg:_css_...</code> <br>
   que permiten css condicional acorde al tamaño de la ventana del navegador.
@@ -81,6 +83,10 @@ Para alcanzar la promoción se implementaron las siguientes funcionalidades adic
 - **Vercel:** sitio web para hacer el deploy de nuestra aplicación de manera gratuita y también la API que esta última utiliza.
   [_Sitio Oficial_](https://vercel.com)
   <br>
+
+- **Geoapify:** api de geolocalización [_Sitio Oficial_](https://www.geoapify.com/) <br>
+
+- **React-Leaflet:** Componentes de Leaflet maps para react [_Sitio Oficial_](https://react-leaflet.js.org/) <br>
 
 ---
 

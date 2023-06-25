@@ -198,7 +198,7 @@ function Entrega({ compraHook, previousStep, nextStep }) {
           {"Mostrar en el mapa" + (loading ? "... ⌛" : " 📍")}
         </button>
         <MapContainer
-          className="h-96 w-full"
+          className="h-96 w-full z-0"
           center={{
             lat: latitude !== "" ? latitude : -38.71,
             lng: longitude !== "" ? longitude : -62.27,
