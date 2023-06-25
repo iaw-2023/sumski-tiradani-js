@@ -6,10 +6,35 @@ En este proyecto logramos implementar una aplicación web de compra de camisetas
 
 La aplicación se desarrolló con React como una aplicación web single-page. Como se pide simular una web profesional, se buscó lograr una experiencia responsive, pudiendose ver de manera correcta en dispositivos móviles como en PCs de escritorio. Además la aplicación cuenta con modo oscuro funcional.
 
+### Promoción
+
+Para alcanzar la promoción se implementaron las siguientes funcionalidades adicionales
+
+- **Login**: para implementar login se utilizó Auth0, servicio que trae ya una interfaz y servicio de recuperación de contraseñas. <br> Una vez autenticado uno puede visitar su perfil y realizar compras. <br>
+  Para realizar una compra uno tiene que tener verificado el mail<br>
+  Para cada call a la API que necesite autenticación, obtiene un token desde el propio servicio, el cual adjunta a la request.
+  <br> &nbsp;
+- **Integración con MercadoPago**: se utiliza el SDK de Mercado Pago para react, se configuró un brick para pagar con tarjeta, el cuál al momento del Submit hace POST a **/comprar/auth** de un token con los datos de pago para que el backend valide y recién si estos datos eran correctos, realice el pago y pueda finalizar la compra.
+  <br> &nbsp;
+- **Administración de Archivos**: se obtienen las imágenes como un campo mas de los objetos Camiseta. Este campo representa un string base64. <br>
+  Para mostrarlas tanto en backend como frontend, se crea un elemento img con <br>
+  <code> src = {data:image/png;base64,_stringb64_} </code>
+  <br> &nbsp;
+- **Accesibilidad**: se siguieron lineamientos de W3C para hacer la página accesible
+  <br> &nbsp;
+- **Servicio Web en JS**: como servicio web utilizamos **GeoApify**, que permite hacer búsquedas por nombre de calle o por latitud y longitud, para autocompletar nuestra ubicación en los datos de entrega, o también para mostrar en un mapa de **React-Leaflet** la ubicación de la dirección ingresada.
+  <br> &nbsp;
+- **Responsive en JS**: para un display correcto tanto en una pantalla de una PC como en un celular, se utilizó principalmente las clases de tailwind:
+  <br><code> sm:_css_, md:_css_, lg:_css_...</code> <br>
+  que permiten css condicional acorde al tamaño de la ventana del navegador.
+  <br> &nbsp;
+
+  _Tambien hay anotaciones en el readme.md del backend_
+
 ### Links
 
-- [Deploy en Vercel de la Tienda](https://tucasaca-js-iamjuanpy.vercel.app/)
-- [Deploy en Vercel del ABM y API](https://tucasaca-laravel-iamjuanpy.vercel.app/)
+- [Deploy en Vercel de la Tienda](https://tucasaca-js.vercel.app/)
+- [Deploy en Vercel del ABM y API](https://tucasaca-laravel.vercel.app/)
 
 ### Aclaraciones pertinentes
 
