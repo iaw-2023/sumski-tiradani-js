@@ -85,9 +85,11 @@ function Entrega({ compraHook, previousStep, nextStep }) {
           return response.json();
         })
         .then((data) => {
-          setCalle(data.results[0].street);
-          setNumero(data.results[0].housenumber);
-          setCiudad(data.results[0].city);
+          setCalle(data.results[0].street ? data.results[0].street : "");
+          setNumero(
+            data.results[0].housenumber ? data.results[0].housenumber : ""
+          );
+          setCiudad(data.results[0].city ? data.results[0].city : "");
           setLatitude(data.results[0].lat);
           setLongitude(data.results[0].lon);
           setLoading(false);

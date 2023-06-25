@@ -14,7 +14,7 @@ function ItemCamiseta({ camiseta, cantidadPedida }) {
           <Link to={"/camiseta/" + camiseta.nombre} className="hover:font-bold">
             <p className="text-md"> {camiseta.nombre}</p>
           </Link>
-          <p className="text-md text-gray-700 dark:text-gray-300">
+          <p className="text-md text-gray-700 dark:text-gray-200">
             {camiseta.descripcion}
           </p>
         </div>
