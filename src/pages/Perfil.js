@@ -56,7 +56,7 @@ const Perfil = () => {
             Hola {user.email} {":)"}
           </p>
           {!user.email_verified && (
-            <p className="inline md:hidden italic text-red-700 align-bottom">
+            <p className="inline md:hidden italic text-red-800 dark:text-red-500 align-bottom">
               Recordá verificar tu mail para poder realizar compras
             </p>
           )}
@@ -70,7 +70,7 @@ const Perfil = () => {
           </button>
         </div>
         {!user.email_verified && (
-          <p className="hidden md:inline italic text-red-700 align-bottom">
+          <p className="hidden md:inline italic text-red-800 dark:text-red-500 align-bottom">
             Recordá verificar tu mail para poder realizar compras
           </p>
         )}

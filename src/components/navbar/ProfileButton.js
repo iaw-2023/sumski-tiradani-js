@@ -7,21 +7,22 @@ export default function ProfileButton() {
   const { loginWithRedirect, isAuthenticated } = useAuth0();
 
   return isAuthenticated ? (
-    <Link to="/profile" className="pt-1">
-      <button
-        className="group text-neutral-900 dark:text-neutral-50 pl-2 hover:text-neutral-500 dark:hover:text-slate-700"
-        size={30}
-        alt="Profile"
-        aria-label="Botón perfil"
-      >
+    <button
+      className="group text-neutral-900 dark:text-neutral-50 pl-2 hover:text-neutral-500 dark:hover:text-slate-700"
+      size={30}
+      alt="Profile"
+      aria-label="Botón perfil"
+    >
+      <Link to="/profile" className="pt-1" aria-label="Botón perfil">
         <AccountBoxIcon />
-      </button>
-    </Link>
+      </Link>
+    </button>
   ) : (
     <button
       className="group text-neutral-900 dark:text-neutral-50 pl-2 hover:text-neutral-500 dark:hover:text-slate-700"
       onClick={() => loginWithRedirect()}
       size={30}
+      aria-label="Botón login"
       alt="Login"
     >
       <ExitToAppIcon />

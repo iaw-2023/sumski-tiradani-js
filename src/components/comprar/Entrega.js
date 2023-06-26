@@ -188,7 +188,7 @@ function Entrega({ compraHook, previousStep, nextStep }) {
       </BoxAlt>
       {error ? (
         <BoxAlt>
-          <p className="text-red-600 italic">{error}</p>
+          <p className="text-red-800 dark:text-red-500 italic">{error}</p>
         </BoxAlt>
       ) : null}
 

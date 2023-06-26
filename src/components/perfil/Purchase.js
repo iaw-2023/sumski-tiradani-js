@@ -67,7 +67,7 @@ const Purchase = ({
         <div className="flex flex-row">
           <p className="font-bold">Detalle</p>
           <button
-            className="ml-auto hover:text-neutral-500 dark:hover:text-slate-700"
+            className="ml-auto text-neutral-900 dark:text-neutral-50 hover:text-neutral-500 dark:hover:text-neutral-800"
             onClick={() => setDetalleShown(!detalleShown)}
             aria-label="Mostrar detalle de compra"
           >

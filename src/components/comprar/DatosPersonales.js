@@ -25,7 +25,7 @@ function DatosPersonales({ compraHook, nextStep }) {
           </p>
         </div>
         {!user.email_verified && (
-          <p className="font-bold italic text-red-700 align-bottom">
+          <p className="font-bold italic text-red-800 dark:text-red-500 align-bottom">
             Verificá tu mail para poder realizar compras
           </p>
         )}

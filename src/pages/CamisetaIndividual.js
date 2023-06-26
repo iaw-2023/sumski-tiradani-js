@@ -201,7 +201,9 @@ function CamisetaIndividual() {
                   </Form>
                   {inputError && (
                     <Box>
-                      <p className="text-red-600 italic">{inputError}</p>
+                      <p className="text-red-800 dark:text-red-500 italic">
+                        {inputError}
+                      </p>
                     </Box>
                   )}
                   {added && (
@@ -234,7 +236,7 @@ function CamisetaIndividual() {
                       </div>
                     </div>
                   ) : (
-                    <p className="text-xl font-bold text-red-600 italic">
+                    <p className="text-xl font-bold text-red-800 dark:text-amber-600 italic">
                       {"Sin stock"}
                     </p>
                   )}
