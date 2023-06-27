@@ -15,7 +15,14 @@ Para alcanzar la promoción se implementaron las siguientes funcionalidades adic
   Para cada call a la API que necesite autenticación, obtiene un token desde el propio servicio, el cual adjunta a la request.
   <br> &nbsp;
 - **Integración con MercadoPago**: se utiliza el SDK de Mercado Pago para react, se configuró un brick para pagar con tarjeta, el cuál al momento del Submit hace POST a **/comprar/auth** de un token con los datos de pago para que el backend valide y recién si estos datos eran correctos, realice el pago y pueda finalizar la compra.
-  <br> &nbsp;
+
+  Tarjetas de prueba
+
+  - Mastercard | 5031 7557 3453 0604 | 123 | 11/25
+  - Visa | 4509 9535 6623 3704 | 123 | 11/25
+  - American Express | 3711 803032 57522 | 1234 | 11/25
+    <br> &nbsp;
+
 - **Administración de Archivos**: se obtienen las imágenes como un campo mas de los objetos Camiseta. Este campo representa un string base64. <br>
   Para mostrarlas tanto en backend como frontend, se crea un elemento img con <br>
   <code> src = {data:image/png;base64,_stringb64_} </code>
