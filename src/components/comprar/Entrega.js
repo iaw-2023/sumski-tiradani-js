@@ -1,7 +1,7 @@
 import BoxAlt from "../../layouts/BoxAlt";
 import PasoLayout from "./PasoLayout";
 import { useEffect, useState } from "react";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import { Icon } from "leaflet";
 import markerIconPng from "leaflet/dist/images/marker-icon.png";
 
@@ -156,6 +156,14 @@ function Entrega({ compraHook, previousStep, nextStep }) {
     }
   };
 
+  const RecenterMapOnUpdate = ({ lat, lng }) => {
+    const map = useMap();
+    useEffect(() => {
+      map.setView([lat, lng]);
+    }, [map, lat, lng]);
+    return null;
+  };
+
   const CONTENT = (
     <>
       <BoxAlt>
@@ -224,6 +232,7 @@ function Entrega({ compraHook, previousStep, nextStep }) {
                 })
               }
             >
+              <RecenterMapOnUpdate lat={latitude} lng={longitude} />
               <Popup>
                 Dirección de entrega <br /> {calle + " " + numero}{" "}
               </Popup>{" "}
