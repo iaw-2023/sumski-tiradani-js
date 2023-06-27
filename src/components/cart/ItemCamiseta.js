@@ -7,7 +7,7 @@ function ItemCamiseta({ camiseta, cantidadPedida }) {
         <img
           src={"data:image/png;base64," + camiseta.imagen_frente}
           className="rounded-md h-16"
-          alt="Camiseta"
+          alt={"Imagen de " + camiseta.nombre}
         />
 
         <div className="flex-col space-y-2 w-full hidden sm:flex">

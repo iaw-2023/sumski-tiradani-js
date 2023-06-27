@@ -139,6 +139,7 @@ function CamisetaIndividual() {
               <div className="w-full sm:w-1/3">
                 <BoxAlt>
                   <ImageHover
+                    nombre={camiseta.nombre}
                     imagen_frente={camiseta.imagen_frente}
                     imagen_atras={camiseta.imagen_atras}
                   />

@@ -9,6 +9,7 @@ function CamisetaCard({ camiseta }) {
     <BoxAlt>
       <div className="flex flex-col h-full">
         <ImageHover
+          nombre={camiseta.nombre}
           imagen_frente={camiseta.imagen_frente}
           imagen_atras={camiseta.imagen_atras}
         />
