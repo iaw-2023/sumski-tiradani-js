@@ -77,7 +77,7 @@ function CamisetaIndividual() {
     };
     setAdded("");
 
-    if (!/^[A-Z\s]+$/i.test(pedido.nombre_a_estampar))
+    if (!/^[A-ZÀ-ú\s]+$/i.test(pedido.nombre_a_estampar))
       setInputError("El nombre a estampar no es válido");
     else if (!/^\d+$/.test(pedido.numero_a_estampar))
       setInputError("El número a estampar no es válido");
