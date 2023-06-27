@@ -20,8 +20,17 @@ Para alcanzar la promoción se implementaron las siguientes funcionalidades adic
   Para mostrarlas tanto en backend como frontend, se crea un elemento img con <br>
   <code> src = {data:image/png;base64,_stringb64_} </code>
   <br> &nbsp;
-- **Accesibilidad**: se siguieron lineamientos de W3C para hacer la página accesible
+- **Accesibilidad**: se siguieron lineamientos de W3C para hacer la página accesible:
+
+  - [_Alternativas de texto para contenido no textual_](https://www.w3.org/WAI/fundamentals/accessibility-principles/#alternatives): los componentes como botones, imágenes, íconos o campos de input tienen texto posible de ser reproducido por software TTS.
+  - [_Contenido fácil de visualizar_](https://www.w3.org/WAI/fundamentals/accessibility-principles/#distinguishable): la aplicación web y sus componentes son responsive, permiten zoom o un aumento de tamaño de letra.
+  - [_Layout simple y claro_](https://www.w3.org/WAI/perspective-videos/layout/): las secciones están bien separadas por funcionalidad.
+  - [_Colores con buen contraste_](https://www.w3.org/WAI/perspective-videos/contrast/): se utilizaron colores que contrasten bien para que toda la información se vea claramente, y se distinga un input de un fondo.
+  - [_Notificaciones y feedback_](https://www.w3.org/WAI/perspective-videos/notifications/): la aplicación muestra adecuadamente las notificaciones tanto de un resultado positivo como de error, en el caso de este último explicando detalladamente qué sucedió.
+
+  Además se comprobó la accesibilidad tanto en versión mobile como escritorio utilizando la herramienta [Lighthouse](https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk?hl=es), la cuál daba puntajes aceptables en las distintas secciones de nuestra aplicación.
   <br> &nbsp;
+
 - **Servicio Web en JS**: como servicio web utilizamos **GeoApify**, que permite hacer búsquedas por nombre de calle o por latitud y longitud, para autocompletar nuestra ubicación en los datos de entrega, o también para mostrar en un mapa de **React-Leaflet** la ubicación de la dirección ingresada.
   <br> &nbsp;
 - **Servicio Web en Laravel**: nada en el frontend.
