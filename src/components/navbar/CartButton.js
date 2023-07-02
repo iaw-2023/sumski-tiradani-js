@@ -11,12 +11,13 @@ export default function CartButton({ onClick }) {
   );
 
   return (
-    <Link className="pt-1" to="/cart">
-      <button
-        className="group text-neutral-900 dark:text-neutral-50 pr-3 hover:text-neutral-500 dark:hover:text-slate-700"
-        onClick={onClick}
-        size={30}
-      >
+    <button
+      className="group text-neutral-900 dark:text-neutral-50 pr-3 hover:text-neutral-500 dark:hover:text-slate-700"
+      onClick={onClick}
+      size={30}
+      aria-label="Botón carrito"
+    >
+      <Link className="pt-1" to="/cart" aria-label="Botón carrito">
         <div className="relative">
           <ShoppingCartIcon />
           {cart.length > 0 ? (
@@ -27,7 +28,7 @@ export default function CartButton({ onClick }) {
             </div>
           ) : null}
         </div>
-      </button>
-    </Link>
+      </Link>
+    </button>
   );
 }

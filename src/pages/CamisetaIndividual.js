@@ -77,7 +77,7 @@ function CamisetaIndividual() {
     };
     setAdded("");
 
-    if (!/^[A-Z\s]+$/i.test(pedido.nombre_a_estampar))
+    if (!/^[A-ZÀ-ú\s]+$/i.test(pedido.nombre_a_estampar))
       setInputError("El nombre a estampar no es válido");
     else if (!/^\d+$/.test(pedido.numero_a_estampar))
       setInputError("El número a estampar no es válido");
@@ -139,6 +139,7 @@ function CamisetaIndividual() {
               <div className="w-full sm:w-1/3">
                 <BoxAlt>
                   <ImageHover
+                    nombre={camiseta.nombre}
                     imagen_frente={camiseta.imagen_frente}
                     imagen_atras={camiseta.imagen_atras}
                   />
@@ -194,13 +195,16 @@ function CamisetaIndividual() {
                             value={talle}
                             onChange={onTalleChange}
                             disabled={!camiseta.activo}
+                            aria-label={talle}
                           />
                         </div>
                       ))}
                   </Form>
                   {inputError && (
                     <Box>
-                      <p className="text-red-600 italic">{inputError}</p>
+                      <p className="text-red-800 dark:text-red-500 italic">
+                        {inputError}
+                      </p>
                     </Box>
                   )}
                   {added && (
@@ -233,7 +237,7 @@ function CamisetaIndividual() {
                       </div>
                     </div>
                   ) : (
-                    <p className="text-xl font-bold text-red-600 italic">
+                    <p className="text-xl font-bold text-red-800 dark:text-amber-600 italic">
                       {"Sin stock"}
                     </p>
                   )}

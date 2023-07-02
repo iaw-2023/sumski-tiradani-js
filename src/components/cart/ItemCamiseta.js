@@ -7,14 +7,16 @@ function ItemCamiseta({ camiseta, cantidadPedida }) {
         <img
           src={"data:image/png;base64," + camiseta.imagen_frente}
           className="rounded-md h-16"
-          alt="Camiseta"
+          alt={"Imagen de " + camiseta.nombre}
         />
 
         <div className="flex-col space-y-2 w-full hidden sm:flex">
           <Link to={"/camiseta/" + camiseta.nombre} className="hover:font-bold">
             <p className="text-md"> {camiseta.nombre}</p>
           </Link>
-          <p className="text-md text-gray-500">{camiseta.descripcion}</p>
+          <p className="text-md text-gray-700 dark:text-gray-200">
+            {camiseta.descripcion}
+          </p>
         </div>
         <div className="flex-col space-y-2 w-full flex sm:hidden">
           <Link to={"/camiseta/" + camiseta.nombre}>
@@ -24,7 +26,7 @@ function ItemCamiseta({ camiseta, cantidadPedida }) {
                 : camiseta.nombre}
             </p>
           </Link>
-          <p className="text-md text-gray-500">
+          <p className="text-md text-gray-700">
             {camiseta.descripcion.length > 16
               ? camiseta.descripcion.substring(0, 16) + "..."
               : camiseta.descripcion}

@@ -3,9 +3,11 @@ import PasoLayout from "./PasoLayout";
 import Error from "../Error";
 import Loading from "../Loading";
 import { CartContext } from "../../contexts/CartContext";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const FinCompra = ({ compraHook }) => {
   const API_URL = process.env.REACT_APP_API_URL;
+  const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
 
   const [compra] = compraHook;
   const [, setCart] = useContext(CartContext);
@@ -19,35 +21,49 @@ const FinCompra = ({ compraHook }) => {
     : "Algo salió mal ☹️";
 
   useEffect(() => {
-    setLoading(true);
-    fetch(API_URL + "/comprar", {
-      method: "POST",
-      headers: {
-        "X-CSRF-TOKEN": "",
-        "Content-Type": "application/json",
-        accept: "application/json",
-      },
-      body: JSON.stringify(compra),
-    })
-      .then((response) => {
+    if (isAuthenticated) {
+      const buy = async () => {
+        setLoading(true);
+        const token = await getAccessTokenSilently();
+        const response = await fetch(API_URL + "/comprar", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+            accept: "application/json",
+          },
+          body: JSON.stringify(compra),
+        });
+        const data = response.ok ? {} : await response.json();
+
         if (response.ok) {
           setCart([]);
           setLoading(false);
         } else {
-          if (response.status === 422) {
+          if (data.message.includes("forma_de_pago")) {
+            setLoading(false);
+            setErrorMsg("Hubo un problema con el pago, intentalo más tarde");
+          } else if (data.message.includes("nombre_camiseta")) {
             setCart([]);
             setLoading(false);
             setErrorMsg(
-              "Alguno de los productos de tu carrito no estaban disponibles"
+              "Algunos de los productos de tu carrito no estaban disponibles"
             );
+          } else {
+            setLoading(false);
+            setErrorMsg("No se pudo realizar la compra");
           }
         }
-      })
-      .catch((error) => {
-        setErrorMsg("No se pudo completar la compra, error de Red");
+      };
+
+      if (!user.email_verified) {
+        setErrorMsg(
+          "No se pudo realizar la compra, el mail no está verificado"
+        );
         setLoading(false);
-      });
-  }, [compra, setCart, API_URL]);
+      } else buy();
+    }
+  }, [compra, setCart, API_URL, user, getAccessTokenSilently, isAuthenticated]);
 
   const CONTENT = loading ? (
     <Loading />

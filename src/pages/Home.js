@@ -10,30 +10,40 @@ function Home() {
   return (
     <div className="min-h-screen mt-16 transition-colors bg-neutral-50 dark:bg-slate-800">
       <div className="w-full min-h-screen m-auto space-y-16 sm:space-y-8 shadow-lg transition-colors bg-neutral-300 dark:bg-slate-700 text-black dark:text-white">
-        <Carousel
-          className="col-span-full row-start-1 row-span-2 self-start"
-          nextLabel=""
-          prevLabel=""
-          indicators={false}
-        >
+        <Carousel nextLabel="" prevLabel="" indicators={false}>
           <Carousel.Item>
             <img
-              className="d-block w-100"
+              className="hidden sm:block w-full"
               src="./img/adidas_argentina.jpg"
+              alt="First slide"
+            />
+            <img
+              className="block sm:hidden w-full"
+              src="./img/adidas_argentina_mob.jpg"
               alt="First slide"
             />
           </Carousel.Item>
           <Carousel.Item>
             <img
-              className="d-block w-100"
+              className="hidden sm:block w-full"
               src="./img/adidas_river.jpg"
+              alt="Second slide"
+            />
+            <img
+              className="block sm:hidden w-full"
+              src="./img/adidas_river_mob.jpg"
               alt="Second slide"
             />
           </Carousel.Item>
           <Carousel.Item>
             <img
-              className="d-block w-100"
+              className="hidden sm:block w-full"
               src="./img/adidas_boca.jpg"
+              alt="Third slide"
+            />
+            <img
+              className="block sm:hidden w-full"
+              src="./img/adidas_boca_mob.jpg"
               alt="Third slide"
             />
           </Carousel.Item>
@@ -44,15 +54,15 @@ function Home() {
         </p>
 
         <div className="px-16">
-          <div className="grid grid-cols-1 md:w-5/6 md:grid-cols-3 gap-4 group place-items-center justify-center col-span-full self-center m-auto z-10 md:-mt-20">
+          <div className="grid grid-cols-1 md:w-5/6 md:grid-cols-3 gap-4 group place-items-center justify-center col-span-full self-center m-auto z-10 lg:-mt-20">
             <div className="max-w-sm dark:bg-slate-800 h-full rounded relative overflow-hidden shadow-lg bg-neutral-50">
               <div className="px-6 py-4 -bottom-10 ">
                 <div className="font-bold text-xl mb-2 text-center">
                   TODAS LAS TARJETAS
                 </div>
                 <p className="text-gray-700 dark:text-gray-400 text-base text-center">
-                  Abona con todos los medios de pago. Mercado Pago con dinero
-                  disponible o tarjeta. ¡Y siempre es seguro!
+                  Abona con tarjeta de débito o crédito a través de Mercado
+                  Pago. ¡Siempre es seguro!
                 </p>
               </div>
             </div>

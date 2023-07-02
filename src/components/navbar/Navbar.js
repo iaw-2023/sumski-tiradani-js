@@ -5,6 +5,7 @@ import DarkModeButton from "./DarkModeButton";
 import HamburgerMenu from "./HamburgerMenu";
 import HamburgerButton from "./HamburgerButton";
 import CartButton from "./CartButton";
+import ProfileButton from "./ProfileButton";
 
 const links = [
   { text: "Home", url: "/" },
@@ -43,6 +44,7 @@ function Navbar() {
         <MobileContent />
         <CartButton onClick={() => setOpen(false)} />
         <DarkModeButton />
+        <ProfileButton />
       </nav>
       <HamburgerMenu openHook={[open, setOpen]} navRef={navRef} links={links} />
     </div>

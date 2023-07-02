@@ -39,6 +39,8 @@ function ItemPedido({ camiseta, pedido }) {
       <button
         className="text-neutral-900 dark:text-neutral-50 hover:text-neutral-500 dark:hover:text-slate-700"
         onClick={deleteFromCart}
+        alt={"Botón eliminar item"}
+        aria-label="Botón eliminar item"
       >
         <DeleteIcon />
       </button>
